@@ -10,12 +10,12 @@ const CONFIG = {
   // OPTION A: Netlify Forms (recommended — free, zero config if hosted on Netlify)
   //   Set USE_NETLIFY_FORMS: true and add netlify attribute to form tags (already done).
   //   Submissions appear in Netlify dashboard + email notification. No webhook needed.
-  USE_NETLIFY_FORMS: true,
+  USE_NETLIFY_FORMS: false,
   //
   // OPTION B: Webhook (GoHighLevel, Make, Brevo, Zapier, etc.)
   //   Paste your inbound webhook URL below. Set USE_NETLIFY_FORMS: false.
-  BOOKING_WEBHOOK_URL: "",
-  CONTACT_WEBHOOK_URL: "",
+  BOOKING_WEBHOOK_URL: "https://formspree.io/f/xbdeeelp",
+  CONTACT_WEBHOOK_URL: "https://formspree.io/f/mdavvvkj",
   //
   // OPTION C: Formspree (works on any host — free up to 50/month)
   //   Replace "" with your Formspree endpoint e.g. "https://formspree.io/f/XXXXXX"
