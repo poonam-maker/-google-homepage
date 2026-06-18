@@ -19,8 +19,8 @@ const CONFIG = {
   //
   // OPTION C: Formspree (works on any host — free up to 50/month)
   //   Replace "" with your Formspree endpoint e.g. "https://formspree.io/f/XXXXXX"
-  FORMSPREE_BOOKING_URL: "",
-  FORMSPREE_CONTACT_URL: "",
+  FORMSPREE_BOOKING_URL: "https://formspree.io/f/xbdeeelp",
+  FORMSPREE_CONTACT_URL: "https://formspree.io/f/mdavvvkj",
 
   // 2. Fallback email if no webhook is set
   FALLBACK_EMAIL: "brunette@petplanet.ca",
