@@ -654,7 +654,7 @@ details p { margin-top: 10px; font-size: 0.95rem; }
 .site-footer ul { list-style: none; }
 .site-footer li { margin-bottom: 8px; font-size: 0.93rem; }
 .site-footer p { color: var(--bone); font-size: 0.93rem; }
-.hours-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 4px; }
+.hours-row { display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 4px; white-space: nowrap; gap: 12px; }
 .footer-bottom {
   border-top: 1px solid rgba(225, 204, 187, 0.25);
   padding-top: 20px;
