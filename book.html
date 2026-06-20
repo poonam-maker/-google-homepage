@@ -51,36 +51,34 @@
 </section>
 
 <section>
-  <div class="wrap" style="max-width: 860px;">
+  <div class="wrap" style="max-width: 1100px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;">
 
-    <!-- STEP 1: Calendar -->
-    <div class="panel" style="margin-bottom: 24px;">
-      <h3 style="margin-bottom: 4px;">Step 1 &mdash; Pick a date</h3>
-      <p class="sub" style="margin-bottom: 20px;">Choose any day in the next 30 days. Meet &amp; greet slots open tomorrow onward.</p>
-      <div class="cal-shell">
-        <div class="cal-header">
-          <button id="calPrev" class="cal-nav" aria-label="Previous month">&#8249;</button>
-          <span id="calMonth" class="cal-month-label"></span>
-          <button id="calNext" class="cal-nav" aria-label="Next month">&#8250;</button>
+    <!-- LEFT: Calendar + time slots -->
+    <div>
+      <div class="panel" style="margin-bottom: 20px;">
+        <h3 style="margin-bottom: 4px;">1. Choose a date and time</h3>
+        <p class="sub" style="margin-bottom: 20px;">Visits can be booked from tomorrow up to 30 days ahead.</p>
+        <div class="cal-shell">
+          <div class="cal-header">
+            <button id="calPrev" class="cal-nav" aria-label="Previous month">&#8249;</button>
+            <span id="calMonth" class="cal-month-label"></span>
+            <button id="calNext" class="cal-nav" aria-label="Next month">&#8250;</button>
+          </div>
+          <div id="calGrid" class="cal-grid"></div>
         </div>
-        <div id="calGrid" class="cal-grid"></div>
       </div>
+      <div id="slotWrap" class="panel hidden">
+        <p id="slotDateLabel" class="sub" style="margin-bottom: 16px;font-weight:600;"></p>
+        <div id="slotGrid" class="slot-grid"></div>
+      </div>
+      <p id="bookingSummary" class="booking-summary hidden" style="margin-top:12px;"></p>
     </div>
 
-    <!-- STEP 2: Time slots -->
-    <div id="slotWrap" class="panel hidden" style="margin-bottom: 24px;">
-      <h3 style="margin-bottom: 4px;">Step 2 &mdash; Pick a time</h3>
-      <p id="slotDateLabel" class="sub" style="margin-bottom: 16px;"></p>
-      <div id="slotGrid" class="slot-grid"></div>
-    </div>
-
-    <!-- Booking summary pill -->
-    <p id="bookingSummary" class="booking-summary hidden"></p>
-
-    <!-- STEP 3: Your details -->
+    <!-- RIGHT: Form -->
     <div id="formPanel" class="panel">
-      <h3 style="margin-bottom: 4px;">Step 3 &mdash; Tell us about your pup</h3>
-      <p class="sub" style="margin-bottom: 20px;">We'll confirm your visit by email within one business day.</p>
+      <h3 style="margin-bottom: 4px;">2. Tell us about your pup</h3>
+      <p class="sub" style="margin-bottom: 20px;">This helps us prepare the right playroom and keeps every dog safe.</p>
       <form id="bookingForm" novalidate>
         <div class="form-row">
           <div class="form-group">
@@ -144,6 +142,7 @@
       </form>
     </div>
 
+    </div><!-- end grid -->
   </div>
 </section>
 
