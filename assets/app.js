@@ -8,19 +8,18 @@ const CONFIG = {
   // Lead capture options — choose ONE approach:
   //
   // OPTION A: Netlify Forms (recommended — free, zero config if hosted on Netlify)
-  //   Set USE_NETLIFY_FORMS: true and add netlify attribute to form tags (already done).
-  //   Submissions appear in Netlify dashboard + email notification. No webhook needed.
   USE_NETLIFY_FORMS: false,
   //
-  // OPTION B: Webhook (GoHighLevel, Make, Brevo, Zapier, etc.)
-  //   Paste your inbound webhook URL below. Set USE_NETLIFY_FORMS: false.
-  BOOKING_WEBHOOK_URL: "https://formspree.io/f/xbdeeelp",
-  CONTACT_WEBHOOK_URL: "https://formspree.io/f/mdavvvkj",
+  // OPTION B: Webhook
+  BOOKING_WEBHOOK_URL: "",
+  CONTACT_WEBHOOK_URL: "",
   //
-  // OPTION C: Formspree (works on any host — free up to 50/month)
-  //   Replace "" with your Formspree endpoint e.g. "https://formspree.io/f/XXXXXX"
-  FORMSPREE_BOOKING_URL: "https://formspree.io/f/xbdeeelp",
-  FORMSPREE_CONTACT_URL: "https://formspree.io/f/mdavvvkj",
+  // OPTION C: Formspree
+  FORMSPREE_BOOKING_URL: "",
+  FORMSPREE_CONTACT_URL: "",
+  //
+  // OPTION D: Web3Forms (free up to 250/month)
+  WEB3FORMS_ACCESS_KEY: "e52acb55-1ed1-483b-94e6-0cadb9f439a9",
 
   // 2. Fallback email if no webhook is set
   FALLBACK_EMAIL: "brunette@petplanet.ca",
@@ -268,18 +267,24 @@ async function submitBooking(e) {
 
   let delivered = false;
 
-  if (CONFIG.USE_NETLIFY_FORMS) {
-    // Netlify Forms: submit as URL-encoded form data to the same page
+  if (CONFIG.WEB3FORMS_ACCESS_KEY) {
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
+          subject: `New Booking Request – ${payload.dog_name} (${payload.visit_date} at ${payload.visit_time})`,
+          from_name: "Pet Planet Brunette Website",
+          ...payload
+        })
+      });
+      delivered = res.ok;
+    } catch(err) { delivered = false; }
+  } else if (CONFIG.USE_NETLIFY_FORMS) {
     try {
       const formData = new URLSearchParams({ "form-name": "booking", ...payload });
       const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: formData.toString() });
-      delivered = res.ok;
-    } catch(err) { delivered = false; }
-  } else if (CONFIG.FORMSPREE_BOOKING_URL) {
-    try {
-      const res = await fetch(CONFIG.FORMSPREE_BOOKING_URL, {
-        method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload)
-      });
       delivered = res.ok;
     } catch(err) { delivered = false; }
   } else if (CONFIG.BOOKING_WEBHOOK_URL) {
@@ -290,7 +295,6 @@ async function submitBooking(e) {
       delivered = res.ok;
     } catch(err) { delivered = false; }
   } else {
-    // Email fallback — no integration configured
     const body = encodeURIComponent("Free first visit request\n\n" + Object.entries(payload).map(([k,v]) => k+": "+v).join("\n"));
     window.open("mailto:"+CONFIG.FALLBACK_EMAIL+"?subject=Free%20first%20visit%20-%20"+encodeURIComponent(payload.dog_name)+"&body="+body, "_blank");
   }
@@ -324,30 +328,19 @@ function initContactForm() {
     trackEvent("contact_form_submitted", { subject: payload.subject });
     if (window.fbq) fbq("track", "Contact");
     let delivered = false;
-    if (CONFIG.USE_NETLIFY_FORMS) {
-      try {
-        const formData = new URLSearchParams({ "form-name": "contact", ...payload });
-        const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: formData.toString() });
-        delivered = res.ok;
-      } catch(err) { delivered = false; }
-    } else if (CONFIG.FORMSPREE_CONTACT_URL) {
-      try {
-        const res = await fetch(CONFIG.FORMSPREE_CONTACT_URL, {
-          method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload)
-        });
-        delivered = res.ok;
-      } catch(err) { delivered = false; }
-    } else if (CONFIG.CONTACT_WEBHOOK_URL) {
-      try {
-        const res = await fetch(CONFIG.CONTACT_WEBHOOK_URL, {
-          method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(payload)
-        });
-        delivered = res.ok;
-      } catch(err) { delivered = false; }
-    } else {
-      const body = encodeURIComponent(payload.message + "\n\nFrom: " + payload.name + "\nPhone: " + payload.phone);
-      window.open("mailto:"+CONFIG.FALLBACK_EMAIL+"?subject="+encodeURIComponent("Website enquiry: "+payload.subject)+"&body="+body, "_blank");
-    }
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
+          subject: `New Contact Form – ${payload.subject}`,
+          from_name: "Pet Planet Brunette Website",
+          ...payload
+        })
+      });
+      delivered = res.ok;
+    } catch(err) { delivered = false; }
     document.getElementById("contactFormWrap").classList.add("hidden");
     document.getElementById("contactConfirm").classList.remove("hidden");
   });

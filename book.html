@@ -16,7 +16,7 @@
   <div class="header-inner">
     <a class="logo" href="index.html">
       <img class="logo-img"
-           src="https://petplanet.ca/cdn/shop/files/1000039480.png?v=1777329603&width=190"
+           src="assets/Pet-Planet-Wordmark-Bark-RGB.png"
            alt="Pet Planet"
            onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
       <span style="display:none;">Pet Planet <span style="color:var(--butter-deep)">Brunette</span></span>
@@ -51,98 +51,16 @@
 </section>
 
 <section>
-  <div class="wrap">
-    <div class="booking-shell">
-
-      <div class="panel" id="calPanel">
-        <h3>1. Choose a date and time</h3>
-        <p class="sub">Visits can be booked from tomorrow up to 30 days ahead.</p>
-        <div class="cal-head">
-          <button class="cal-nav" id="calPrev" aria-label="Previous month">&#8249;</button>
-          <span class="month" id="calMonth"></span>
-          <button class="cal-nav" id="calNext" aria-label="Next month">&#8250;</button>
-        </div>
-        <div class="cal-grid" id="calGrid" role="grid" aria-label="Choose a visit date"></div>
-        <div id="slotWrap" class="hidden">
-          <p class="slot-hint" style="font-weight: 800; color: var(--bark);">Available times on <span id="slotDateLabel"></span></p>
-          <div class="slot-grid" id="slotGrid"></div>
-          <p class="slot-hint">Weekday arrivals can be as early as 6 AM once your pup is enrolled. First visits are scheduled when an evaluator is available.</p>
-        </div>
-      </div>
-
-      <div class="panel" id="formPanel">
-        <h3>2. Tell us about your pup</h3>
-        <p class="sub">This helps us prepare the right playroom and keeps every dog safe.</p>
-        <div id="bookingSummary" class="summary hidden"></div>
-        <form id="bookingForm" name="booking" data-netlify="true">
-          <input type="hidden" name="form-name" value="booking">
-          <div class="form-grid">
-            <div>
-              <label for="parentName">Your name</label>
-              <input id="parentName" name="parentName" type="text" required autocomplete="name">
-            </div>
-            <div>
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" required autocomplete="tel">
-            </div>
-            <div class="full">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" required autocomplete="email">
-            </div>
-            <div>
-              <label for="dogName">Dog's name</label>
-              <input id="dogName" name="dogName" type="text" required>
-            </div>
-            <div>
-              <label for="dogBreed">Breed</label>
-              <input id="dogBreed" name="dogBreed" type="text" required>
-            </div>
-            <div>
-              <label for="dogSize">Dog's size</label>
-              <select id="dogSize" name="dogSize" required>
-                <option value="">Select size</option>
-                <option>Small, under 25 lb</option>
-                <option>Medium, 25 to 60 lb</option>
-                <option>Large, over 60 lb</option>
-              </select>
-            </div>
-            <div>
-              <label for="vaccinated">Vaccinations up to date</label>
-              <select id="vaccinated" name="vaccinated" required>
-                <option value="">Select one</option>
-                <option>Yes</option>
-                <option>Not yet</option>
-              </select>
-            </div>
-            <div class="full">
-              <label for="fixed">Spayed or neutered (required at 7 months and older)</label>
-              <select id="fixed" name="fixed" required>
-                <option value="">Select one</option>
-                <option>Yes</option>
-                <option>No</option>
-                <option>Under 7 months old</option>
-              </select>
-            </div>
-            <div class="full">
-              <label for="notes">Anything we should know? (optional)</label>
-              <textarea id="notes" name="notes" placeholder="Energy level, sensitivities, favourite things..."></textarea>
-            </div>
-          </div>
-          <p class="slot-hint" style="margin: 14px 0;">By requesting a visit you agree that we may contact you by phone, text or email to confirm the appointment.</p>
-          <button class="btn btn-primary" type="submit" style="width: 100%;">Request my free first visit</button>
-        </form>
-      </div>
-
-      <div class="panel confirm hidden" id="confirmPanel" style="grid-column: 1 / -1;">
-        <div class="paw">&#10003;</div>
-        <h3>Request received</h3>
-        <p id="confirmDetail" style="margin-top: 10px; font-weight: 700; color: var(--bark);"></p>
-        <p id="confirmNote" style="margin-top: 10px;"></p>
-        <p style="margin-top: 22px;">
-          <a class="btn btn-ghost btn-sm" href="first-visit.html">See what to bring on the day</a>
-        </p>
-      </div>
-
+  <div class="wrap" style="max-width: 760px;">
+    <div class="panel">
+      <h3 style="margin-bottom: 8px;">Tell us about your pup</h3>
+      <p class="sub" style="margin-bottom: 20px;">Fill in your details below and our team will be in touch to confirm your free first visit.</p>
+      <script>
+        window.GingrForms.createForm({
+          form_name: 'lead_form',
+          subdomain: 'petplanetdaycare'
+        })
+      </script>
     </div>
   </div>
 </section>
@@ -171,7 +89,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-brand">
-          <img src="https://petplanet.ca/cdn/shop/files/1000039480.png?v=1777329603&width=190"
+          <img src="assets/Pet-Planet-Wordmark-Bark-RGB.png"
                alt="Pet Planet" style="height:32px;width:auto;filter:brightness(10);"
                onerror="this.style.display='none'">
         </div>
@@ -223,6 +141,7 @@
   </div>
 </footer>
 
+<script type="text/javascript" src="https://storage.googleapis.com/gingr-embeddable/assets/js/bundle.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>
