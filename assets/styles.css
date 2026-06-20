@@ -644,7 +644,7 @@ details p { margin-top: 10px; font-size: 0.95rem; }
   min-height: 260px;
 }
 .footer-left {
-  background: var(--bone-light);
+  background: #fff;
   padding: 48px 56px 48px 48px;
   display: flex;
   flex-direction: column;
@@ -656,7 +656,7 @@ details p { margin-top: 10px; font-size: 0.95rem; }
   gap: 14px;
   text-align: center;
 }
-.footer-left img { height: 100px; width: auto; mix-blend-mode: darken; }
+.footer-left img { height: 110px; width: auto; border-radius: 12px; }
 .footer-left p { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.4; margin: 0; }
 .footer-right {
   flex: 1;
