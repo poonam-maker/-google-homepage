@@ -645,18 +645,18 @@ details p { margin-top: 10px; font-size: 0.95rem; }
 }
 .footer-left {
   background: var(--bone-light);
-  padding: 48px 40px;
+  padding: 48px 56px 48px 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 220px;
-  border-radius: 0 120px 120px 0;
+  min-width: 260px;
+  border-radius: 0 50% 50% 0 / 0 40% 40% 0;
   z-index: 1;
   gap: 14px;
   text-align: center;
 }
-.footer-left img { height: 100px; width: auto; mix-blend-mode: multiply; }
+.footer-left img { height: 100px; width: auto; mix-blend-mode: darken; }
 .footer-left p { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.4; margin: 0; }
 .footer-right {
   flex: 1;
@@ -840,7 +840,7 @@ details p { margin-top: 10px; font-size: 0.95rem; }
   .hero-inner, .booking-shell, .grid-2 { grid-template-columns: 1fr; }
   .grid-3, .steps, .features { grid-template-columns: 1fr 1fr; }
   .footer-right { grid-template-columns: 1fr 1fr; padding: 36px 32px; }
-  .footer-left { min-width: 160px; padding: 36px 24px; border-radius: 0 60px 60px 0; }
+  .footer-left { min-width: 180px; padding: 36px 40px 36px 28px; border-radius: 0 50% 50% 0 / 0 40% 40% 0; }
   .footer-left img { height: 72px; }
   .main-nav {
     display: none;
