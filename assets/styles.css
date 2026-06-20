@@ -95,6 +95,31 @@ img { max-width: 100%; display: block; }
 
 .btn-sm { padding: 10px 20px; font-size: 0.92rem; }
 
+/* Top bar */
+.top-bar {
+  background: var(--bark);
+  color: var(--bone-lighter);
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding: 8px 24px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.top-bar a { color: var(--bone-lighter); text-decoration: none; }
+.top-bar a:hover { text-decoration: underline; }
+
+/* Logo fallback */
+.logo-fallback {
+  font-family: "Lexend", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--bark);
+  display: none;
+}
+.logo-fallback span { color: var(--butter-deep, #b8960a); }
+
 /* Header */
 .site-header {
   background: var(--bone-lighter);
