@@ -51,17 +51,99 @@
 </section>
 
 <section>
-  <div class="wrap" style="max-width: 760px;">
-    <div class="panel">
-      <h3 style="margin-bottom: 8px;">Tell us about your pup</h3>
-      <p class="sub" style="margin-bottom: 20px;">Fill in your details below and our team will be in touch to confirm your free first visit.</p>
-      <script>
-        window.GingrForms.createForm({
-          form_name: 'lead_form',
-          subdomain: 'petplanetdaycare'
-        })
-      </script>
+  <div class="wrap" style="max-width: 860px;">
+
+    <!-- STEP 1: Calendar -->
+    <div class="panel" style="margin-bottom: 24px;">
+      <h3 style="margin-bottom: 4px;">Step 1 &mdash; Pick a date</h3>
+      <p class="sub" style="margin-bottom: 20px;">Choose any day in the next 30 days. Meet &amp; greet slots open tomorrow onward.</p>
+      <div class="cal-shell">
+        <div class="cal-header">
+          <button id="calPrev" class="cal-nav" aria-label="Previous month">&#8249;</button>
+          <span id="calMonth" class="cal-month-label"></span>
+          <button id="calNext" class="cal-nav" aria-label="Next month">&#8250;</button>
+        </div>
+        <div id="calGrid" class="cal-grid"></div>
+      </div>
     </div>
+
+    <!-- STEP 2: Time slots -->
+    <div id="slotWrap" class="panel hidden" style="margin-bottom: 24px;">
+      <h3 style="margin-bottom: 4px;">Step 2 &mdash; Pick a time</h3>
+      <p id="slotDateLabel" class="sub" style="margin-bottom: 16px;"></p>
+      <div id="slotGrid" class="slot-grid"></div>
+    </div>
+
+    <!-- Booking summary pill -->
+    <p id="bookingSummary" class="booking-summary hidden"></p>
+
+    <!-- STEP 3: Your details -->
+    <div id="formPanel" class="panel">
+      <h3 style="margin-bottom: 4px;">Step 3 &mdash; Tell us about your pup</h3>
+      <p class="sub" style="margin-bottom: 20px;">We'll confirm your visit by email within one business day.</p>
+      <form id="bookingForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="parentName">Your name <span class="req">*</span></label>
+            <input type="text" id="parentName" name="parentName" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone number <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="dogName">Dog's name <span class="req">*</span></label>
+            <input type="text" id="dogName" name="dogName" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dogBreed">Breed</label>
+            <input type="text" id="dogBreed" name="dogBreed">
+          </div>
+          <div class="form-group">
+            <label for="dogSize">Size</label>
+            <select id="dogSize" name="dogSize">
+              <option value="">Select size</option>
+              <option value="small">Small (under 25 lb)</option>
+              <option value="medium">Medium (25–55 lb)</option>
+              <option value="large">Large (55–90 lb)</option>
+              <option value="xlarge">X-Large (90 lb+)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="vaccinated">Vaccinations up to date?</label>
+            <select id="vaccinated" name="vaccinated">
+              <option value="">Select</option>
+              <option value="yes">Yes</option>
+              <option value="no">No / Not sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fixed">Spayed / neutered?</label>
+            <select id="fixed" name="fixed">
+              <option value="">Select</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="notes">Anything else we should know?</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Temperament, allergies, previous daycare experience…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;">Request free first visit &rarr;</button>
+      </form>
+    </div>
+
   </div>
 </section>
 
@@ -141,7 +223,6 @@
   </div>
 </footer>
 
-<script type="text/javascript" src="https://storage.googleapis.com/gingr-embeddable/assets/js/bundle.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>
