@@ -713,28 +713,26 @@ details p { margin-top: 10px; font-size: 0.95rem; }
 
 /* Summer Banner */
 .summer-banner {
-  background: linear-gradient(135deg, #c9a84c 0%, #e8c77e 40%, #b8960a 100%);
   position: relative;
   overflow: hidden;
+  background: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1400&q=80') center/cover no-repeat;
+  border-radius: 20px;
+  margin: 0 32px;
 }
 .summer-banner::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('assets/Dog-in-daycare-outside') center/cover no-repeat;
-  opacity: 0.18;
+  background: linear-gradient(to right, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.05) 100%);
 }
 .summer-banner-inner {
   position: relative;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 56px 32px;
-  display: flex;
-  align-items: center;
-  gap: 48px;
+  padding: 72px 56px;
 }
-.summer-banner-text { flex: 1; }
-.summer-badges { display: flex; gap: 10px; margin-bottom: 16px; }
+.summer-banner-text { max-width: 520px; }
+.summer-badges { display: flex; gap: 10px; margin-bottom: 20px; }
 .badge-summer {
   background: #e8620a;
   color: #fff;
@@ -753,24 +751,13 @@ details p { margin-top: 10px; font-size: 0.95rem; }
   padding: 5px 14px;
   border-radius: 999px;
 }
-.summer-title { color: var(--bark); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 10px; }
-.summer-sub { color: var(--bark); font-size: 1rem; max-width: 480px; margin-bottom: 16px; }
-.summer-price { font-size: 2.8rem; font-weight: 800; color: var(--bark); line-height: 1; margin-bottom: 24px; }
-.summer-price small { font-size: 1rem; font-weight: 400; }
-.summer-banner-img {
-  flex-shrink: 0;
-  width: 380px;
-}
-.summer-banner-img img {
-  width: 100%;
-  border-radius: 16px;
-  object-fit: cover;
-  max-height: 280px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-}
+.summer-title { color: #fff; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 10px; }
+.summer-sub { color: rgba(255,255,255,0.88); font-size: 1rem; margin-bottom: 16px; }
+.summer-price { font-size: 2.8rem; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 24px; }
+.summer-price small { font-size: 1rem; font-weight: 400; opacity: 0.85; }
 @media (max-width: 768px) {
-  .summer-banner-inner { flex-direction: column; }
-  .summer-banner-img { width: 100%; }
+  .summer-banner { margin: 0 16px; border-radius: 16px; }
+  .summer-banner-inner { padding: 48px 28px; }
 }
 
 /* Logo image */
