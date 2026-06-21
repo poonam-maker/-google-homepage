@@ -715,14 +715,15 @@ details p { margin-top: 10px; font-size: 0.95rem; }
 .ticker-wrap {
   background: #6A3D38;
   overflow: hidden;
-  white-space: nowrap;
   padding: 12px 0;
   border-top: 3px solid #B7C4A5;
   border-bottom: 3px solid #B7C4A5;
+  width: 100%;
 }
 .ticker-track {
-  display: inline-block;
-  animation: ticker-scroll 30s linear infinite;
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 20s linear infinite;
 }
 .ticker-item {
   display: inline-block;
@@ -731,12 +732,14 @@ details p { margin-top: 10px; font-size: 0.95rem; }
   color: #B7C4A5;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0 24px;
+  padding: 0 32px;
+  white-space: nowrap;
 }
 .ticker-sep {
   color: #B7C4A5;
   opacity: 0.5;
   font-size: 1rem;
+  align-self: center;
 }
 @keyframes ticker-scroll {
   0%   { transform: translateX(0); }
