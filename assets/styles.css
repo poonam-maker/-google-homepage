@@ -715,7 +715,7 @@ details p { margin-top: 10px; font-size: 0.95rem; }
 .summer-banner {
   position: relative;
   overflow: hidden;
-  background: url('../Daycare Dogs Home page.jpg') center/cover no-repeat;
+  background: url('Daycare Dogs Home page.jpg') center/cover no-repeat;
   border-radius: 0;
   margin: 0;
 }
