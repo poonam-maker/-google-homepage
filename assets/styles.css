@@ -644,19 +644,17 @@ details p { margin-top: 10px; font-size: 0.95rem; }
   min-height: 260px;
 }
 .footer-left {
-  background: #fff;
+  background: var(--bark);
   padding: 48px 56px 48px 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-width: 260px;
-  border-radius: 0 50% 50% 0 / 0 40% 40% 0;
-  z-index: 1;
   gap: 14px;
   text-align: center;
 }
-.footer-left img { height: 110px; width: auto; border-radius: 12px; }
+.footer-left img { height: 48px; width: auto; }
 .footer-left p { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.4; margin: 0; }
 .footer-right {
   flex: 1;
@@ -859,8 +857,8 @@ details p { margin-top: 10px; font-size: 0.95rem; }
   .hero-inner, .booking-shell, .grid-2 { grid-template-columns: 1fr; }
   .grid-3, .steps, .features { grid-template-columns: 1fr 1fr; }
   .footer-right { grid-template-columns: 1fr 1fr; padding: 36px 32px; }
-  .footer-left { min-width: 180px; padding: 36px 40px 36px 28px; border-radius: 0 50% 50% 0 / 0 40% 40% 0; }
-  .footer-left img { height: 72px; }
+  .footer-left { min-width: 180px; padding: 36px 40px 36px 28px; }
+  .footer-left img { height: 40px; }
   .main-nav {
     display: none;
     position: absolute;
