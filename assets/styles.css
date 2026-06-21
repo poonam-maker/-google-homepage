@@ -711,6 +711,38 @@ details p { margin-top: 10px; font-size: 0.95rem; }
 .footer-legal a:hover { color: var(--butter); }
 
 
+/* Ticker Ribbon */
+.ticker-wrap {
+  background: #6A3D38;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 12px 0;
+  border-top: 3px solid #B7C4A5;
+  border-bottom: 3px solid #B7C4A5;
+}
+.ticker-track {
+  display: inline-block;
+  animation: ticker-scroll 30s linear infinite;
+}
+.ticker-item {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #B7C4A5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0 24px;
+}
+.ticker-sep {
+  color: #B7C4A5;
+  opacity: 0.5;
+  font-size: 1rem;
+}
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* Summer Banner */
 .summer-banner {
   position: relative;
