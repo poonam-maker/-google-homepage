@@ -655,7 +655,9 @@ details p { margin-top: 10px; font-size: 0.95rem; }
   text-align: center;
 }
 .footer-left img { height: 48px; width: auto; }
-.footer-left p { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.4; margin: 0; }
+.footer-left p { font-size: 0.82rem; color: var(--bone); line-height: 1.4; margin: 0; }
+.footer-left p a { color: var(--bone); font-weight: 600; }
+.footer-left p a:hover { color: var(--butter); }
 .footer-right {
   flex: 1;
   background: var(--bark);
