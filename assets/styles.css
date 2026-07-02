@@ -880,16 +880,34 @@ details p { margin-top: 10px; font-size: 0.95rem; }
   .main-nav.open { display: flex; }
   .nav-toggle { display: block; }
   .signin-link { display: none; }
+  /* Hide header CTA button — nav hamburger covers it */
+  .header-cta .btn { display: none; }
 }
 @media (max-width: 600px) {
+  .wrap { padding: 0 16px; }
   .grid-3, .steps, .features, .form-grid { grid-template-columns: 1fr; }
   .site-footer { flex-direction: column; }
-  .footer-left { border-radius: 0; padding: 32px 24px; }
-  .footer-right { grid-template-columns: 1fr 1fr; padding: 32px 24px; }
+  .footer-left { border-radius: 0; padding: 32px 24px; min-width: 100%; }
+  .footer-right { grid-template-columns: 1fr; padding: 32px 24px; }
   .slot-grid { grid-template-columns: 1fr 1fr; }
-  section { padding: 52px 0; }
-  .cta-banner { padding: 32px 24px; }
+  section { padding: 48px 0; }
+  /* Hero */
+  .hero-inner { padding: 40px 16px; gap: 24px; }
+  .hero p.lede { font-size: 1rem; margin: 14px 0 20px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { text-align: center; }
+  /* CTA banner */
+  .cta-banner { padding: 28px 20px; flex-direction: column; align-items: flex-start; gap: 18px; }
+  /* Summer banner */
+  .summer-banner-inner { padding: 36px 20px; }
+  .summer-price { font-size: 2rem; }
+  /* Top bar */
+  .top-bar { gap: 12px; padding: 8px 16px; font-size: 0.78rem; }
+  /* Section head */
+  .section-head { margin-bottom: 28px; }
 }
+/* Table overflow on mobile */
+table.enroll { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
   html { scroll-behavior: auto; }
