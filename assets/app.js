@@ -277,7 +277,7 @@ async function submitBooking(e) {
           access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
           subject: `New Booking Request – ${payload.dog_name} (${payload.visit_date} at ${payload.visit_time})`,
           from_name: "Pet Planet Brunette Website",
-          to: "brunette@petplanet.ca",
+          to: "brunette@coquitlam.petplanet.ca",
           ...payload
         })
       });
