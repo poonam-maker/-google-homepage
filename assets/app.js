@@ -292,12 +292,9 @@ async function submitBooking(e) {
         Resubscribe: true,
         ConsentToTrack: "Yes"
       };
-      const res = await fetch(`https://api.createsend.com/api/v3.2/subscribers/${CONFIG.CM_LIST_ID}.json`, {
+      const res = await fetch("submit.php", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Basic " + btoa(CONFIG.CM_API_KEY + ":x")
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cmPayload)
       });
       delivered = res.ok;
@@ -352,12 +349,9 @@ function initContactForm() {
           Resubscribe: true,
           ConsentToTrack: "Yes"
         };
-        const res = await fetch(`https://api.createsend.com/api/v3.2/subscribers/${CONFIG.CM_LIST_ID}.json`, {
+        const res = await fetch("submit.php", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Basic " + btoa(CONFIG.CM_API_KEY + ":x")
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(cmPayload)
         });
         delivered = res.ok;
