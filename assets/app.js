@@ -29,7 +29,7 @@ const CONFIG = {
 
   // 4. GTM / Meta Pixel IDs — injected dynamically so one config change covers all pages
   GTM_IDS: ["GTM-K34XKB59", "GTM-WCBNSWTP"],
-  META_PIXEL_ID: "934092203344037",
+  META_PIXEL_ID: "2408756286271482",
 };
 
 /* ============================================================
@@ -114,9 +114,24 @@ function initNav() {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".main-nav");
   if (toggle && nav) {
+    // Inject "Book free visit" CTA at bottom of mobile nav
+    const cta = document.createElement("a");
+    cta.href = "book.html";
+    cta.className = "btn btn-primary nav-cta-mobile";
+    cta.textContent = "Book free visit";
+    nav.appendChild(cta);
+
     toggle.addEventListener("click", () => {
       nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", nav.classList.contains("open"));
+    });
+
+    // Close nav when any link is tapped (important for mobile UX)
+    nav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
     });
   }
 }

@@ -21,6 +21,9 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* Prevent horizontal overflow on all screens */
+html, body { overflow-x: hidden; max-width: 100%; }
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -66,13 +69,16 @@ img { max-width: 100%; display: block; }
 
 /* Buttons */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: "Lexend", sans-serif;
   font-weight: 800;
   font-size: 1rem;
   text-decoration: none;
   border-radius: 999px;
   padding: 14px 28px;
+  min-height: 48px;
   border: 2px solid transparent;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
@@ -93,7 +99,7 @@ img { max-width: 100%; display: block; }
 }
 .btn-ghost:hover { background: var(--bone-light); }
 
-.btn-sm { padding: 10px 20px; font-size: 0.92rem; }
+.btn-sm { padding: 10px 20px; font-size: 0.92rem; min-height: 44px; }
 
 /* Top bar */
 .top-bar {
@@ -154,6 +160,9 @@ img { max-width: 100%; display: block; }
   font-weight: 700;
   font-size: 0.95rem;
   color: var(--ink-soft);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 .main-nav a:hover, .main-nav a.active { color: var(--bark); }
 
@@ -532,12 +541,13 @@ label { font-size: 0.86rem; font-weight: 800; color: var(--bark); display: block
 input, select, textarea {
   width: 100%;
   font-family: "Lexend", sans-serif;
-  font-size: 0.95rem;
+  font-size: 16px; /* 16px prevents iOS auto-zoom on focus */
   color: var(--ink);
   background: #fff;
   border: 1.5px solid var(--bone);
   border-radius: 10px;
-  padding: 11px 13px;
+  padding: 13px 15px;
+  min-height: 48px;
 }
 input:focus, select:focus, textarea:focus {
   outline: none;
@@ -857,6 +867,9 @@ details p { margin-top: 10px; font-size: 0.95rem; }
 .footer-legal a { color: var(--bone); text-decoration: none; }
 .footer-legal a:hover { color: var(--butter); }
 
+/* Mobile nav CTA button — hidden on desktop, shown inside hamburger menu */
+.nav-cta-mobile { display: none; }
+
 /* Responsive */
 @media (max-width: 920px) {
   .hero-inner, .booking-shell, .grid-2 { grid-template-columns: 1fr; }
@@ -871,43 +884,76 @@ details p { margin-top: 10px; font-size: 0.95rem; }
     left: 0;
     right: 0;
     background: var(--bone-lighter);
-    border-bottom: 1px solid var(--bone);
+    border-bottom: 2px solid var(--bone);
     flex-direction: column;
     align-items: flex-start;
-    padding: 18px 24px;
-    gap: 14px;
+    padding: 16px 24px 20px;
+    gap: 4px;
+    box-shadow: 0 8px 24px rgba(106,61,56,0.10);
+    z-index: 100;
   }
+  .main-nav a { width: 100%; padding: 12px 0; border-bottom: 1px solid var(--bone); font-size: 1rem; }
+  .main-nav a:last-of-type { border-bottom: none; }
   .main-nav.open { display: flex; }
-  .nav-toggle { display: block; }
+  .nav-toggle { display: block; min-height: 44px; min-width: 44px; }
   .signin-link { display: none; }
-  /* Hide header CTA button — nav hamburger covers it */
+  /* Hide header CTA button — shown inside nav instead */
   .header-cta .btn { display: none; }
+  .nav-cta-mobile { display: inline-flex; margin-top: 12px; width: 100%; justify-content: center; }
 }
+
 @media (max-width: 600px) {
   .wrap { padding: 0 16px; }
   .grid-3, .steps, .features, .form-grid { grid-template-columns: 1fr; }
   .site-footer { flex-direction: column; }
   .footer-left { border-radius: 0; padding: 32px 24px; min-width: 100%; }
   .footer-right { grid-template-columns: 1fr; padding: 32px 24px; }
+  .footer-legal { padding: 14px 24px; justify-content: center; text-align: center; }
   .slot-grid { grid-template-columns: 1fr 1fr; }
-  section { padding: 48px 0; }
+  .slot { min-height: 48px; font-size: 0.95rem; }
+  section { padding: 44px 0; }
   /* Hero */
-  .hero-inner { padding: 40px 16px; gap: 24px; }
-  .hero p.lede { font-size: 1rem; margin: 14px 0 20px; }
+  .hero-inner { padding: 36px 16px; gap: 24px; }
+  .hero p.lede { font-size: 1rem; margin: 12px 0 18px; }
   .hero-actions { flex-direction: column; align-items: stretch; }
-  .hero-actions .btn { text-align: center; }
+  .hero-actions .btn { width: 100%; }
+  .hero-side-img { height: 200px; }
+  .hero-img { height: 200px; }
   /* CTA banner */
-  .cta-banner { padding: 28px 20px; flex-direction: column; align-items: flex-start; gap: 18px; }
+  .cta-banner { padding: 28px 20px; flex-direction: column; align-items: stretch; gap: 18px; }
+  .cta-banner .btn { width: 100%; }
   /* Summer banner */
   .summer-banner-inner { padding: 36px 20px; }
-  .summer-price { font-size: 2rem; }
-  /* Top bar */
-  .top-bar { gap: 12px; padding: 8px 16px; font-size: 0.78rem; }
+  .summer-price { font-size: 1.8rem; }
+  .summer-title { font-size: 1.8rem; }
+  /* Top bar: hide on mobile to save space */
+  .top-bar { display: none; }
   /* Section head */
-  .section-head { margin-bottom: 28px; }
+  .section-head { margin-bottom: 24px; }
+  /* Hours table */
+  .hours-row { flex-direction: column; gap: 2px; margin-bottom: 10px; }
+  /* Calendar */
+  .cal-day { min-height: 40px; font-size: 0.82rem; border-radius: 8px; }
+  .cal-dow { font-size: 0.65rem; }
+  /* Checklist */
+  .checklist li { padding: 14px 16px 14px 44px; }
+  /* Cards */
+  .card { padding: 20px; }
+  .card-img { height: 160px; }
 }
+
+@media (max-width: 380px) {
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.4rem; }
+  .btn { font-size: 0.95rem; padding: 13px 22px; }
+  .summer-price { font-size: 1.6rem; }
+}
+
 /* Table overflow on mobile */
 table.enroll { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Ensure all images never overflow */
+img, iframe { max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
   html { scroll-behavior: auto; }
