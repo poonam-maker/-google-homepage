@@ -5,23 +5,11 @@
    ============================================================ */
 
 const CONFIG = {
-  // Lead capture options — choose ONE approach:
-  //
-  // OPTION A: Netlify Forms (recommended — free, zero config if hosted on Netlify)
-  USE_NETLIFY_FORMS: false,
-  //
-  // OPTION B: Webhook
-  BOOKING_WEBHOOK_URL: "",
-  CONTACT_WEBHOOK_URL: "",
-  //
-  // OPTION C: Formspree
-  FORMSPREE_BOOKING_URL: "",
-  FORMSPREE_CONTACT_URL: "",
-  //
-  // OPTION D: Web3Forms (free up to 250/month)
-  WEB3FORMS_ACCESS_KEY: "e52acb55-1ed1-483b-94e6-0cadb9f439a9",
+  // Campaign Monitor integration
+  CM_API_KEY: "12716220128b11143e674fde1dc6fc56",
+  CM_LIST_ID: "5BE5F9B2C77DC832",
 
-  // 2. Fallback email if no webhook is set
+  // Fallback email if Campaign Monitor fails
   FALLBACK_EMAIL: "brunette@petplanet.ca",
 
   // 3. Thank-you page for conversion tracking
@@ -283,35 +271,40 @@ async function submitBooking(e) {
 
   let delivered = false;
 
-  if (CONFIG.WEB3FORMS_ACCESS_KEY) {
+  if (CONFIG.CM_API_KEY && CONFIG.CM_LIST_ID) {
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const cmPayload = {
+        EmailAddress: payload.email,
+        Name: payload.parent_name,
+        CustomFields: [
+          { Key: "Phone", Value: payload.phone },
+          { Key: "DogName", Value: payload.dog_name },
+          { Key: "DogBreed", Value: payload.dog_breed },
+          { Key: "DogSize", Value: payload.dog_size },
+          { Key: "Service", Value: payload.service },
+          { Key: "VisitDate", Value: payload.visit_date },
+          { Key: "VisitTime", Value: payload.visit_time },
+          { Key: "Vaccinated", Value: payload.vaccinated },
+          { Key: "SpayedNeutered", Value: payload.spayed_neutered },
+          { Key: "Notes", Value: payload.notes },
+          { Key: "Source", Value: payload.source }
+        ],
+        Resubscribe: true,
+        ConsentToTrack: "Yes"
+      };
+      const res = await fetch(`https://api.createsend.com/api/v3.2/subscribers/${CONFIG.CM_LIST_ID}.json`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({
-          access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
-          subject: `New Booking Request – ${payload.dog_name} (${payload.visit_date} at ${payload.visit_time})`,
-          from_name: "Pet Planet Brunette Website",
-          to: "brunette@coquitlam.petplanet.ca",
-          ...payload
-        })
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Basic " + btoa(CONFIG.CM_API_KEY + ":x")
+        },
+        body: JSON.stringify(cmPayload)
       });
       delivered = res.ok;
     } catch(err) { delivered = false; }
-  } else if (CONFIG.USE_NETLIFY_FORMS) {
-    try {
-      const formData = new URLSearchParams({ "form-name": "booking", ...payload });
-      const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: formData.toString() });
-      delivered = res.ok;
-    } catch(err) { delivered = false; }
-  } else if (CONFIG.BOOKING_WEBHOOK_URL) {
-    try {
-      const res = await fetch(CONFIG.BOOKING_WEBHOOK_URL, {
-        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload)
-      });
-      delivered = res.ok;
-    } catch(err) { delivered = false; }
-  } else {
+  }
+
+  if (!delivered) {
     const body = encodeURIComponent("Free first visit request\n\n" + Object.entries(payload).map(([k,v]) => k+": "+v).join("\n"));
     window.open("mailto:"+CONFIG.FALLBACK_EMAIL+"?subject=Free%20first%20visit%20-%20"+encodeURIComponent(payload.dog_name)+"&body="+body, "_blank");
   }
@@ -345,19 +338,31 @@ function initContactForm() {
     trackEvent("contact_form_submitted", { subject: payload.subject });
     if (window.fbq) fbq("track", "Contact");
     let delivered = false;
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({
-          access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
-          subject: `New Contact Form – ${payload.subject}`,
-          from_name: "Pet Planet Brunette Website",
-          ...payload
-        })
-      });
-      delivered = res.ok;
-    } catch(err) { delivered = false; }
+    if (CONFIG.CM_API_KEY && CONFIG.CM_LIST_ID) {
+      try {
+        const cmPayload = {
+          EmailAddress: payload.email,
+          Name: payload.name,
+          CustomFields: [
+            { Key: "Phone", Value: payload.phone },
+            { Key: "Subject", Value: payload.subject },
+            { Key: "Message", Value: payload.message },
+            { Key: "Source", Value: payload.source }
+          ],
+          Resubscribe: true,
+          ConsentToTrack: "Yes"
+        };
+        const res = await fetch(`https://api.createsend.com/api/v3.2/subscribers/${CONFIG.CM_LIST_ID}.json`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Basic " + btoa(CONFIG.CM_API_KEY + ":x")
+          },
+          body: JSON.stringify(cmPayload)
+        });
+        delivered = res.ok;
+      } catch(err) { delivered = false; }
+    }
     document.getElementById("contactFormWrap").classList.add("hidden");
     document.getElementById("contactConfirm").classList.remove("hidden");
   });
