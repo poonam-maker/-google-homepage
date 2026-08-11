@@ -7,7 +7,7 @@
 const CONFIG = {
   // Campaign Monitor integration
   CM_API_KEY: "12716220128b11143e674fde1dc6fc56",
-  CM_LIST_ID: "203B232679CDABB1",
+  CM_LIST_ID: "6C9D3FC5F702B592",
 
   // Fallback email if Campaign Monitor fails
   FALLBACK_EMAIL: "brunette@petplanet.ca",
