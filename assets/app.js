@@ -29,7 +29,7 @@ const CONFIG = {
 
   // 4. GTM / Meta Pixel IDs — injected dynamically so one config change covers all pages
   GTM_IDS: ["GTM-K34XKB59", "GTM-WCBNSWTP"],
-  META_PIXEL_ID: "934092203344037",
+  META_PIXEL_ID: "2408756286271482",
 };
 
 /* ============================================================
