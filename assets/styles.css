@@ -956,21 +956,25 @@ table.enroll { display: block; overflow-x: auto; -webkit-overflow-scrolling: tou
 img, iframe { max-width: 100%; }
 
 /* Booking page mobile fixes */
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .booking-shell {
+    display: grid !important;
     grid-template-columns: 1fr !important;
-    gap: 20px;
+    gap: 20px !important;
   }
+  .booking-shell > div { width: 100% !important; box-sizing: border-box; }
   .booking-shell .panel { width: 100%; box-sizing: border-box; }
   .cal-grid { gap: 4px; }
   .cal-day { min-height: 38px; font-size: 0.78rem; }
   .cal-head { gap: 8px; }
   /* Fix submit button on mobile — prevent circular shape */
   button[type="submit"].btn {
-    border-radius: 16px;
+    border-radius: 16px !important;
     min-height: 56px;
     font-size: 1rem;
     padding: 16px 24px;
+    width: 100% !important;
+    display: block !important;
   }
 }
 @media (prefers-reduced-motion: reduce) {
