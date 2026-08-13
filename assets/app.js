@@ -102,13 +102,6 @@ function initNav() {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".main-nav");
   if (toggle && nav) {
-    // Inject "Book free visit" CTA at bottom of mobile nav
-    const cta = document.createElement("a");
-    cta.href = "book.html";
-    cta.className = "btn btn-primary nav-cta-mobile";
-    cta.textContent = "Book free visit";
-    nav.appendChild(cta);
-
     toggle.addEventListener("click", () => {
       nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", nav.classList.contains("open"));
