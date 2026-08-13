@@ -897,7 +897,8 @@ details p { margin-top: 10px; font-size: 0.95rem; }
   .main-nav.open { display: flex; }
   .nav-toggle { display: block; min-height: 44px; min-width: 44px; }
   .signin-link { display: none; }
-  .nav-cta-mobile { display: none; }
+  /* Hide header CTA button — shown inside nav instead */
+  .header-cta .btn { display: none; }
   .main-nav.open .nav-cta-mobile { display: inline-flex; margin-top: 12px; width: 100%; justify-content: center; }
 }
 
