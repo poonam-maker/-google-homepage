@@ -10,7 +10,7 @@ const CONFIG = {
   CM_LIST_ID: "6C9D3FC5F702B592",
 
   // Fallback email if Campaign Monitor fails
-  FALLBACK_EMAIL: "brunette@petplanet.ca",
+  FALLBACK_EMAIL: "brunette@coquitlam.petplanet.ca",
 
   // 3. Thank-you page for conversion tracking
   THANK_YOU_PAGE: "thank-you.html",
@@ -58,7 +58,7 @@ function injectSchema() {
     "description": "Dog daycare, overnight boarding, grooming and spa in Coquitlam, BC. Your dog's first day is free.",
     "url": "https://daycare.petplanet.ca",
     "telephone": "+17783971364",
-    "email": "brunette@petplanet.ca",
+    "email": "brunette@coquitlam.petplanet.ca",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "822 Brunette Ave",
