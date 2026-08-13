@@ -868,7 +868,7 @@ details p { margin-top: 10px; font-size: 0.95rem; }
 .footer-legal a:hover { color: var(--butter); }
 
 /* Mobile nav CTA button — hidden on desktop, shown inside hamburger menu */
-.nav-cta-mobile { display: none; }
+.nav-cta-mobile { display: none !important; }
 
 /* Responsive */
 @media (max-width: 920px) {
@@ -899,7 +899,7 @@ details p { margin-top: 10px; font-size: 0.95rem; }
   .signin-link { display: none; }
   /* Hide header CTA button — shown inside nav instead */
   .header-cta .btn { display: none; }
-  .main-nav.open .nav-cta-mobile { display: inline-flex; margin-top: 12px; width: 100%; justify-content: center; }
+  .main-nav.open .nav-cta-mobile { display: inline-flex !important; margin-top: 12px; width: 100%; justify-content: center; }
 }
 
 @media (max-width: 600px) {
