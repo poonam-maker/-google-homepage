@@ -5,23 +5,10 @@
    ============================================================ */
 
 const CONFIG = {
-  // Lead capture options — choose ONE approach:
-  //
-  // OPTION A: Netlify Forms (recommended — free, zero config if hosted on Netlify)
-  USE_NETLIFY_FORMS: false,
-  //
-  // OPTION B: Webhook
-  BOOKING_WEBHOOK_URL: "",
-  CONTACT_WEBHOOK_URL: "",
-  //
-  // OPTION C: Formspree
-  FORMSPREE_BOOKING_URL: "",
-  FORMSPREE_CONTACT_URL: "",
-  //
-  // OPTION D: Web3Forms (free up to 250/month)
+  // 1. Web3Forms (free up to 250/month) — primary lead delivery
   WEB3FORMS_ACCESS_KEY: "e52acb55-1ed1-483b-94e6-0cadb9f439a9",
 
-  // 2. Fallback email if no webhook is set
+  // 2. Fallback email if Web3Forms fails
   FALLBACK_EMAIL: "brunette@coquitlam.petplanet.ca",
 
   // 3. Thank-you page for conversion tracking
@@ -105,7 +92,7 @@ function injectSchema() {
     "description": "Dog daycare, overnight boarding, grooming and spa in Coquitlam, BC. Your dog's first day is free.",
     "url": "https://daycare.petplanet.ca",
     "telephone": "+17783971364",
-    "email": "brunette@petplanet.ca",
+    "email": "brunette@coquitlam.petplanet.ca",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "822 Brunette Ave",
@@ -152,6 +139,14 @@ function initNav() {
     toggle.addEventListener("click", () => {
       nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", nav.classList.contains("open"));
+    });
+
+    // Close nav when any link is tapped (important for mobile UX)
+    nav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
     });
   }
 }
@@ -338,20 +333,9 @@ async function submitBooking(e) {
       });
       delivered = res.ok;
     } catch(err) { delivered = false; }
-  } else if (CONFIG.USE_NETLIFY_FORMS) {
-    try {
-      const formData = new URLSearchParams({ "form-name": "booking", ...payload });
-      const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: formData.toString() });
-      delivered = res.ok;
-    } catch(err) { delivered = false; }
-  } else if (CONFIG.BOOKING_WEBHOOK_URL) {
-    try {
-      const res = await fetch(CONFIG.BOOKING_WEBHOOK_URL, {
-        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload)
-      });
-      delivered = res.ok;
-    } catch(err) { delivered = false; }
-  } else {
+  }
+
+  if (!delivered) {
     const body = encodeURIComponent("Free first visit request\n\n" + Object.entries(payload).map(([k,v]) => k+": "+v).join("\n"));
     window.open("mailto:"+CONFIG.FALLBACK_EMAIL+"?subject=Free%20first%20visit%20-%20"+encodeURIComponent(payload.dog_name)+"&body="+body, "_blank");
   }
@@ -385,19 +369,21 @@ function initContactForm() {
     trackEvent("contact_form_submitted", { subject: payload.subject });
     if (window.fbq) fbq("track", "Contact");
     let delivered = false;
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({
-          access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
-          subject: `New Contact Form – ${payload.subject}`,
-          from_name: "Pet Planet Brunette Website",
-          ...payload
-        })
-      });
-      delivered = res.ok;
-    } catch(err) { delivered = false; }
+    if (CONFIG.WEB3FORMS_ACCESS_KEY) {
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
+            subject: `New Contact Form – ${payload.subject}`,
+            from_name: "Pet Planet Brunette Website",
+            ...payload
+          })
+        });
+        delivered = res.ok;
+      } catch(err) { delivered = false; }
+    }
     document.getElementById("contactFormWrap").classList.add("hidden");
     document.getElementById("contactConfirm").classList.remove("hidden");
   });
