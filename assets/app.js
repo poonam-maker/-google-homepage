@@ -30,6 +30,11 @@ const CONFIG = {
   // 4. GTM / Meta Pixel IDs — injected dynamically so one config change covers all pages
   GTM_IDS: ["GTM-K34XKB59", "GTM-WCBNSWTP"],
   META_PIXEL_ID: "2408756286271482",
+
+  // 5. HubSpot — booking form submissions are sent here to create/update CRM contacts
+  HUBSPOT_PORTAL_ID: "343526399",
+  HUBSPOT_REGION: "na3",
+  HUBSPOT_BOOKING_FORM_ID: "42ffff5a-2756-4444-a578-240a68a41fac",
 };
 
 /* ============================================================
@@ -57,6 +62,36 @@ function injectTracking() {
 function trackEvent(eventName, params = {}) {
   if (window.dataLayer) window.dataLayer.push({ event: eventName, ...params });
   if (window.fbq) fbq("trackCustom", eventName, params);
+}
+
+/* ============================================================
+   HUBSPOT LEAD CAPTURE
+   Submits form data to HubSpot's Forms API so a Contact is
+   created/updated in the CRM, tied to the visitor's tracking
+   cookie for journey tracking. Runs alongside (not instead of)
+   the existing email delivery, and never blocks it on failure.
+   ============================================================ */
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+  return match ? decodeURIComponent(match[1]) : "";
+}
+
+async function submitToHubSpot(formId, fields) {
+  if (!CONFIG.HUBSPOT_PORTAL_ID || !formId) return;
+  try {
+    await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${CONFIG.HUBSPOT_PORTAL_ID}/${formId}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fields: fields.filter(f => f.value !== "" && f.value != null),
+        context: {
+          hutk: getCookie("hubspotutk"),
+          pageUri: window.location.href,
+          pageName: document.title
+        }
+      })
+    });
+  } catch (err) { /* non-blocking — booking flow must not depend on HubSpot */ }
 }
 
 /* ============================================================
@@ -265,6 +300,26 @@ async function submitBooking(e) {
   trackEvent("booking_submitted", { dog_name: payload.dog_name, visit_date: payload.visit_date });
   if (window.fbq) fbq("track", "Lead", { content_name: "Free First Visit Booking", currency: "CAD", value: 0 });
   if (window.dataLayer) window.dataLayer.push({ event: "conversion", send_to: "booking_free_visit" });
+
+  // Send the lead to HubSpot so a Contact is created/updated in the CRM
+  const nameParts = payload.parent_name.split(/\s+/);
+  const SERVICE_LABELS = { daycare: "Dog Daycare", boarding: "Overnight Boarding", grooming: "Grooming & Spa", "daycare-boarding": "Daycare + Boarding", "not-sure": "Not sure yet" };
+  const SIZE_LABELS = { small: "Small (under 25 lb)", medium: "Medium (25–55 lb)", large: "Large (55–90 lb)", xlarge: "X-Large (90 lb+)" };
+  submitToHubSpot(CONFIG.HUBSPOT_BOOKING_FORM_ID, [
+    { name: "email", value: payload.email },
+    { name: "firstname", value: nameParts[0] || "" },
+    { name: "lastname", value: nameParts.slice(1).join(" ") },
+    { name: "phone", value: payload.phone },
+    { name: "dog_s_name", value: payload.dog_name },
+    { name: "dog_breed", value: payload.dog_breed },
+    { name: "dog_size", value: SIZE_LABELS[payload.dog_size] || payload.dog_size },
+    { name: "service_interested_in", value: SERVICE_LABELS[payload.service] || payload.service },
+    { name: "visit_date", value: payload.visit_date },
+    { name: "visit_time", value: payload.visit_time },
+    { name: "vaccinated", value: payload.vaccinated === "yes" ? "Yes" : payload.vaccinated === "no" ? "No / Not sure" : "" },
+    { name: "spayed_neutered", value: payload.spayed_neutered === "yes" ? "Yes" : payload.spayed_neutered === "no" ? "No" : "" },
+    { name: "notes", value: payload.notes }
+  ]);
 
   let delivered = false;
 
