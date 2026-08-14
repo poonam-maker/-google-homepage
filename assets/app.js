@@ -22,7 +22,7 @@ const CONFIG = {
   WEB3FORMS_ACCESS_KEY: "e52acb55-1ed1-483b-94e6-0cadb9f439a9",
 
   // 2. Fallback email if no webhook is set
-  FALLBACK_EMAIL: "brunette@petplanet.ca",
+  FALLBACK_EMAIL: "brunette@coquitlam.petplanet.ca",
 
   // 3. Thank-you page for conversion tracking
   THANK_YOU_PAGE: "thank-you.html",
