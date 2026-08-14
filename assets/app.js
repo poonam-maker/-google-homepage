@@ -245,6 +245,7 @@ async function submitBooking(e) {
     parent_name: form.parentName.value.trim(),
     email: form.email.value.trim(),
     phone: form.phone.value.trim(),
+    city: form.city ? form.city.value.trim() : "",
     service: form.service ? form.service.value : "",
     dog_name: form.dogName.value.trim(),
     dog_breed: form.dogBreed.value.trim(),
