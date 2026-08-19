@@ -57,22 +57,54 @@
 </section>
 
 <section style="background:var(--butter);padding:0;overflow:hidden;">
-  <a href="summer-sale.html" style="text-decoration:none;display:block;">
   <div class="summer-sale-banner" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:340px;">
     <div class="sale-text" style="padding:48px 48px 40px;display:flex;flex-direction:column;justify-content:center;">
       <p style="font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--bark);margin-bottom:8px;">Don't Miss Out!</p>
       <h2 style="font-size:3rem;font-weight:800;line-height:1;color:var(--bark);margin:0 0 16px;text-transform:uppercase;">Summer<br>Sale</h2>
       <p style="font-size:2rem;font-weight:700;color:var(--bark);margin:0 0 8px;">15% OFF</p>
       <p style="font-size:1.2rem;font-weight:500;color:var(--bark);margin:0 0 24px;">Pet Food<span style="font-size:0.9rem;">*</span></p>
+      <button onclick="document.getElementById('couponModal').style.display='flex'" style="align-self:flex-start;background:var(--bark-deep);color:var(--bone-lighter);font-family:'Lexend',sans-serif;font-weight:800;font-size:1rem;padding:12px 28px;border:none;border-radius:999px;cursor:pointer;margin-bottom:20px;">Get coupon &rarr;</button>
       <img src="assets/Pet-Planet-Wordmark-Bark-RGB.png" alt="Pet Planet" style="height:36px;width:auto;object-fit:contain;align-self:flex-start;">
-      <p style="font-size:0.72rem;color:var(--bark);opacity:0.7;margin-top:16px;">*Offer available for a limited time. Some restrictions may apply. Select locations only.</p>
+      <p style="font-size:0.72rem;color:var(--bark);opacity:0.7;margin-top:16px;">*Offer available for a limited time. In-store only. Some restrictions may apply. Select locations only.</p>
     </div>
     <div class="sale-img" style="position:relative;overflow:hidden;min-height:300px;">
       <img src="assets/hero-dog-food.jpg" alt="Summer Sale at Pet Planet" style="width:100%;height:100%;object-fit:cover;object-position:center;">
     </div>
   </div>
-  </a>
 </section>
+
+<!-- Coupon Modal -->
+<div id="couponModal" style="display:none;position:fixed;inset:0;background:rgba(58,37,34,0.7);z-index:999;align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;border-radius:20px;max-width:480px;width:100%;overflow:hidden;box-shadow:0 24px 64px rgba(58,37,34,0.3);position:relative;">
+    <button onclick="document.getElementById('couponModal').style.display='none'" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--ink-soft);line-height:1;">&times;</button>
+    <!-- Coupon header -->
+    <div style="background:var(--butter);padding:32px 32px 24px;text-align:center;">
+      <p style="font-size:0.78rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--bark);margin-bottom:6px;">Pet Planet Brunette — In-Store Only</p>
+      <h2 style="font-size:2.6rem;font-weight:800;color:var(--bark);line-height:1;margin:0 0 8px;text-transform:uppercase;">Summer<br>Sale</h2>
+      <p style="font-size:2.2rem;font-weight:800;color:var(--bark-deep);margin:0;">15% OFF</p>
+      <p style="font-size:1rem;font-weight:600;color:var(--bark);margin:4px 0 0;">Pet Food</p>
+    </div>
+    <!-- Dashed separator -->
+    <div style="border-top:2px dashed var(--bone);margin:0 24px;"></div>
+    <!-- Coupon code -->
+    <div style="padding:20px 32px;text-align:center;background:#fff;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Your coupon code</p>
+      <div style="background:var(--bone-lighter);border:2px dashed var(--bone);border-radius:12px;padding:14px 20px;display:inline-block;min-width:220px;">
+        <span style="font-family:'Lexend',sans-serif;font-size:1.7rem;font-weight:800;letter-spacing:0.15em;color:var(--bark-deep);">SummerSale15</span>
+      </div>
+    </div>
+    <!-- Redemption instructions -->
+    <div style="background:var(--sage-light);border-top:1px solid var(--sage);padding:18px 32px 24px;">
+      <p style="font-size:0.82rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:var(--bark);margin-bottom:8px;">📸 How to redeem</p>
+      <ol style="padding-left:18px;display:flex;flex-direction:column;gap:6px;">
+        <li style="font-size:0.88rem;color:var(--ink);font-weight:500;"><strong>Screenshot this coupon</strong> and save it to your phone.</li>
+        <li style="font-size:0.88rem;color:var(--ink);font-weight:500;">Visit us <strong>in-store</strong> at 822 Brunette Ave, Coquitlam.</li>
+        <li style="font-size:0.88rem;color:var(--ink);font-weight:500;">Show the screenshot at the till when purchasing pet food.</li>
+      </ol>
+      <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:12px;padding-top:10px;border-top:1px solid var(--sage);">⚠️ This offer is <strong>valid in-store only</strong> and cannot be applied to online orders at petplanet.ca. One coupon per visit. Cannot be combined with other offers.</p>
+    </div>
+  </div>
+</div>
 
 <section>
   <div class="wrap">
