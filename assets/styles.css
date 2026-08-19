@@ -977,6 +977,14 @@ img, iframe { max-width: 100%; }
     display: block !important;
   }
 }
+/* Summer sale banner mobile */
+@media (max-width: 700px) {
+  .summer-sale-banner { grid-template-columns: 1fr !important; }
+  .summer-sale-banner .sale-img { min-height: 200px !important; }
+  .summer-sale-banner .sale-text { padding: 32px 24px 24px !important; }
+  .summer-sale-banner h2 { font-size: 2.2rem !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
   html { scroll-behavior: auto; }
