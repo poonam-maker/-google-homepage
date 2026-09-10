@@ -101,18 +101,13 @@
 
     <!-- Step indicator -->
     <div id="stepIndicator" style="display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:36px;">
-      <div class="step-dot active" id="dot1" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+      <div id="dot1" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
         <div style="width:36px;height:36px;border-radius:50%;background:var(--bark);color:#fff;font-weight:800;font-size:0.95rem;display:flex;align-items:center;justify-content:center;">1</div>
         <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--bark);">Your info</span>
       </div>
       <div style="flex:1;height:2px;background:var(--bone);margin:0 8px;margin-bottom:22px;"></div>
-      <div class="step-dot" id="dot2" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+      <div id="dot2" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
         <div style="width:36px;height:36px;border-radius:50%;background:var(--bone);color:var(--ink-soft);font-weight:800;font-size:0.95rem;display:flex;align-items:center;justify-content:center;">2</div>
-        <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink-soft);">Your dog</span>
-      </div>
-      <div style="flex:1;height:2px;background:var(--bone);margin:0 8px;margin-bottom:22px;"></div>
-      <div class="step-dot" id="dot3" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-        <div style="width:36px;height:36px;border-radius:50%;background:var(--bone);color:var(--ink-soft);font-weight:800;font-size:0.95rem;display:flex;align-items:center;justify-content:center;">3</div>
         <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink-soft);">Date &amp; time</span>
       </div>
     </div>
@@ -143,37 +138,6 @@
           <input type="text" id="city" name="city" autocomplete="address-level2">
         </div>
       </div>
-      <button type="button" onclick="goToStep(2)" class="btn btn-primary" style="width:100%;margin-top:8px;">Next: your dog &rarr;</button>
-    </div>
-
-    <!-- STEP 2: Dog info -->
-    <div id="step2" class="panel" style="display:none;">
-      <h3 style="margin-bottom:4px;">Tell us about your pup</h3>
-      <p class="sub" style="margin-bottom:24px;">This helps us prepare for the meet and greet and keep every dog safe.</p>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="dogName">Dog's name <span class="req">*</span></label>
-          <input type="text" id="dogName" name="dogName" required>
-        </div>
-        <div class="form-group">
-          <label for="dogGender">Gender</label>
-          <select id="dogGender" name="dogGender">
-            <option value="">Select</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="dogBreed">Breed</label>
-          <input type="text" id="dogBreed" name="dogBreed" placeholder="e.g. Golden Retriever">
-        </div>
-        <div class="form-group">
-          <label for="dogAge">Age (best guess)</label>
-          <input type="text" id="dogAge" name="dogAge" placeholder="e.g. 2 years">
-        </div>
-      </div>
       <div class="form-group">
         <label for="service">Service interested in <span class="req">*</span></label>
         <select id="service" name="service" required>
@@ -189,14 +153,11 @@
         <label for="notes">Anything else we should know?</label>
         <textarea id="notes" name="notes" rows="3" placeholder="Temperament, allergies, previous daycare experience…"></textarea>
       </div>
-      <div style="display:flex;gap:12px;margin-top:8px;">
-        <button type="button" onclick="goToStep(1)" class="btn btn-outline" style="flex:1;">&#8592; Back</button>
-        <button type="button" onclick="goToStep(3)" class="btn btn-primary" style="flex:2;">Next: pick a date &rarr;</button>
-      </div>
+      <button type="button" onclick="goToStep(2)" class="btn btn-primary" style="width:100%;margin-top:8px;">Next: pick a date &rarr;</button>
     </div>
 
-    <!-- STEP 3: Date & time -->
-    <div id="step3" style="display:none;">
+    <!-- STEP 2: Date & time -->
+    <div id="step2" style="display:none;">
       <div class="panel" style="margin-bottom:20px;">
         <h3 style="margin-bottom:4px;">Choose a date and time</h3>
         <p class="sub" style="margin-bottom:20px;">Visits can be booked from tomorrow up to 30 days ahead.</p>
@@ -215,7 +176,7 @@
       </div>
       <p id="bookingSummary" class="booking-summary hidden" style="margin-bottom:12px;"></p>
       <div style="display:flex;gap:12px;">
-        <button type="button" onclick="goToStep(2)" class="btn btn-outline" style="flex:1;">&#8592; Back</button>
+        <button type="button" onclick="goToStep(1)" class="btn btn-outline" style="flex:1;">&#8592; Back</button>
         <button type="submit" class="btn btn-primary" style="flex:2;">Confirm booking &rarr;</button>
       </div>
     </div>
@@ -226,30 +187,21 @@
 
 <script>
 function goToStep(n) {
-  // Validate step 1 before advancing
   if (n === 2) {
     const name = document.getElementById('parentName');
     const email = document.getElementById('email');
     const phone = document.getElementById('phone');
+    const service = document.getElementById('service');
     let ok = true;
     [name, email, phone].forEach(function(el) {
       if (!el.value.trim()) { el.style.borderColor = 'var(--bark-deep)'; ok = false; }
       else el.style.borderColor = '';
     });
-    if (!ok) { name.focus(); return; }
-  }
-  // Validate step 2 before advancing
-  if (n === 3) {
-    const dogName = document.getElementById('dogName');
-    const service = document.getElementById('service');
-    let ok = true;
-    if (!dogName.value.trim()) { dogName.style.borderColor = 'var(--bark-deep)'; ok = false; }
-    else dogName.style.borderColor = '';
     if (!service.value) { service.style.borderColor = 'var(--bark-deep)'; ok = false; }
     else service.style.borderColor = '';
-    if (!ok) { dogName.focus(); return; }
+    if (!ok) { name.focus(); return; }
   }
-  [1,2,3].forEach(function(i) {
+  [1,2].forEach(function(i) {
     var el = document.getElementById('step' + i);
     if (el) el.style.display = i === n ? '' : 'none';
     var dot = document.getElementById('dot' + i);
