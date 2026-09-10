@@ -97,77 +97,186 @@
 </section>
 
 <section>
-  <div class="wrap" style="max-width: 1100px;">
-    <div class="booking-shell" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;">
+  <div class="wrap" style="max-width:700px;">
 
-    <!-- LEFT: Calendar + time slots -->
-    <div>
-      <div class="panel" style="margin-bottom: 20px;">
-        <h3 style="margin-bottom: 4px;">1. Choose a date and time</h3>
-        <p class="sub" style="margin-bottom: 20px;">Visits can be booked from tomorrow up to 30 days ahead.</p>
+    <!-- Step indicator -->
+    <div id="stepIndicator" style="display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:36px;">
+      <div class="step-dot active" id="dot1" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--bark);color:#fff;font-weight:800;font-size:0.95rem;display:flex;align-items:center;justify-content:center;">1</div>
+        <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--bark);">Your info</span>
+      </div>
+      <div style="flex:1;height:2px;background:var(--bone);margin:0 8px;margin-bottom:22px;"></div>
+      <div class="step-dot" id="dot2" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--bone);color:var(--ink-soft);font-weight:800;font-size:0.95rem;display:flex;align-items:center;justify-content:center;">2</div>
+        <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink-soft);">Your dog</span>
+      </div>
+      <div style="flex:1;height:2px;background:var(--bone);margin:0 8px;margin-bottom:22px;"></div>
+      <div class="step-dot" id="dot3" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--bone);color:var(--ink-soft);font-weight:800;font-size:0.95rem;display:flex;align-items:center;justify-content:center;">3</div>
+        <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink-soft);">Date &amp; time</span>
+      </div>
+    </div>
+
+    <form id="bookingForm" novalidate>
+
+    <!-- STEP 1: Owner info -->
+    <div id="step1" class="panel">
+      <h3 style="margin-bottom:4px;">Your information</h3>
+      <p class="sub" style="margin-bottom:24px;">We'll use this to confirm your booking and follow up before your visit.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="parentName">Your name <span class="req">*</span></label>
+          <input type="text" id="parentName" name="parentName" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone number <span class="req">*</span></label>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" autocomplete="address-level2">
+        </div>
+      </div>
+      <button type="button" onclick="goToStep(2)" class="btn btn-primary" style="width:100%;margin-top:8px;">Next: your dog &rarr;</button>
+    </div>
+
+    <!-- STEP 2: Dog info -->
+    <div id="step2" class="panel" style="display:none;">
+      <h3 style="margin-bottom:4px;">Tell us about your pup</h3>
+      <p class="sub" style="margin-bottom:24px;">This helps us prepare for the meet and greet and keep every dog safe.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dogName">Dog's name <span class="req">*</span></label>
+          <input type="text" id="dogName" name="dogName" required>
+        </div>
+        <div class="form-group">
+          <label for="dogGender">Gender</label>
+          <select id="dogGender" name="dogGender">
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dogBreed">Breed</label>
+          <input type="text" id="dogBreed" name="dogBreed" placeholder="e.g. Golden Retriever">
+        </div>
+        <div class="form-group">
+          <label for="dogAge">Age (best guess)</label>
+          <input type="text" id="dogAge" name="dogAge" placeholder="e.g. 2 years">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="service">Service interested in <span class="req">*</span></label>
+        <select id="service" name="service" required>
+          <option value="">Select a service</option>
+          <option value="daycare">Dog Daycare</option>
+          <option value="boarding">Overnight Boarding</option>
+          <option value="grooming">Grooming &amp; Spa</option>
+          <option value="daycare-boarding">Daycare + Boarding</option>
+          <option value="not-sure">Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="notes">Anything else we should know?</label>
+        <textarea id="notes" name="notes" rows="3" placeholder="Temperament, allergies, previous daycare experience…"></textarea>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <button type="button" onclick="goToStep(1)" class="btn btn-outline" style="flex:1;">&#8592; Back</button>
+        <button type="button" onclick="goToStep(3)" class="btn btn-primary" style="flex:2;">Next: pick a date &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Date & time -->
+    <div id="step3" style="display:none;">
+      <div class="panel" style="margin-bottom:20px;">
+        <h3 style="margin-bottom:4px;">Choose a date and time</h3>
+        <p class="sub" style="margin-bottom:20px;">Visits can be booked from tomorrow up to 30 days ahead.</p>
         <div class="cal-shell">
           <div class="cal-header">
-            <button id="calPrev" class="cal-nav" aria-label="Previous month">&#8249;</button>
+            <button type="button" id="calPrev" class="cal-nav" aria-label="Previous month">&#8249;</button>
             <span id="calMonth" class="cal-month-label"></span>
-            <button id="calNext" class="cal-nav" aria-label="Next month">&#8250;</button>
+            <button type="button" id="calNext" class="cal-nav" aria-label="Next month">&#8250;</button>
           </div>
           <div id="calGrid" class="cal-grid"></div>
         </div>
       </div>
-      <div id="slotWrap" class="panel hidden">
-        <p id="slotDateLabel" class="sub" style="margin-bottom: 16px;font-weight:600;"></p>
+      <div id="slotWrap" class="panel hidden" style="margin-bottom:20px;">
+        <p id="slotDateLabel" class="sub" style="margin-bottom:16px;font-weight:600;"></p>
         <div id="slotGrid" class="slot-grid"></div>
       </div>
-      <p id="bookingSummary" class="booking-summary hidden" style="margin-top:12px;"></p>
+      <p id="bookingSummary" class="booking-summary hidden" style="margin-bottom:12px;"></p>
+      <div style="display:flex;gap:12px;">
+        <button type="button" onclick="goToStep(2)" class="btn btn-outline" style="flex:1;">&#8592; Back</button>
+        <button type="submit" class="btn btn-primary" style="flex:2;">Confirm booking &rarr;</button>
+      </div>
     </div>
 
-    <!-- RIGHT: Form -->
-    <div id="formPanel" class="panel">
-      <h3 style="margin-bottom: 4px;">2. Tell us about your pup</h3>
-      <p class="sub" style="margin-bottom: 20px;">This helps us prepare the right playroom and keeps every dog safe.</p>
-      <form id="bookingForm" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="parentName">Your name <span class="req">*</span></label>
-            <input type="text" id="parentName" name="parentName" required autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label for="email">Email <span class="req">*</span></label>
-            <input type="email" id="email" name="email" required autocomplete="email">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="phone">Phone number <span class="req">*</span></label>
-            <input type="tel" id="phone" name="phone" required autocomplete="tel">
-          </div>
-          <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" id="city" name="city" autocomplete="address-level2">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="service">Service interested in <span class="req">*</span></label>
-          <select id="service" name="service" required>
-            <option value="">Select a service</option>
-            <option value="daycare">Dog Daycare</option>
-            <option value="boarding">Overnight Boarding</option>
-            <option value="grooming">Grooming &amp; Spa</option>
-            <option value="daycare-boarding">Daycare + Boarding</option>
-            <option value="not-sure">Not sure yet</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="notes">Anything else we should know?</label>
-          <textarea id="notes" name="notes" rows="3" placeholder="Temperament, allergies, previous daycare experience…"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;">Book now &rarr;</button>
-      </form>
-    </div>
-
-    </div><!-- end grid -->
+    </form>
   </div>
 </section>
+
+<script>
+function goToStep(n) {
+  // Validate step 1 before advancing
+  if (n === 2) {
+    const name = document.getElementById('parentName');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    let ok = true;
+    [name, email, phone].forEach(function(el) {
+      if (!el.value.trim()) { el.style.borderColor = 'var(--bark-deep)'; ok = false; }
+      else el.style.borderColor = '';
+    });
+    if (!ok) { name.focus(); return; }
+  }
+  // Validate step 2 before advancing
+  if (n === 3) {
+    const dogName = document.getElementById('dogName');
+    const service = document.getElementById('service');
+    let ok = true;
+    if (!dogName.value.trim()) { dogName.style.borderColor = 'var(--bark-deep)'; ok = false; }
+    else dogName.style.borderColor = '';
+    if (!service.value) { service.style.borderColor = 'var(--bark-deep)'; ok = false; }
+    else service.style.borderColor = '';
+    if (!ok) { dogName.focus(); return; }
+  }
+  [1,2,3].forEach(function(i) {
+    var el = document.getElementById('step' + i);
+    if (el) el.style.display = i === n ? '' : 'none';
+    var dot = document.getElementById('dot' + i);
+    if (dot) {
+      var circle = dot.querySelector('div');
+      var label = dot.querySelector('span');
+      if (i < n) {
+        circle.style.background = 'var(--sage)';
+        circle.style.color = '#fff';
+        circle.innerHTML = '&#10003;';
+        label.style.color = 'var(--bark)';
+      } else if (i === n) {
+        circle.style.background = 'var(--bark)';
+        circle.style.color = '#fff';
+        circle.innerHTML = i;
+        label.style.color = 'var(--bark)';
+      } else {
+        circle.style.background = 'var(--bone)';
+        circle.style.color = 'var(--ink-soft)';
+        circle.innerHTML = i;
+        label.style.color = 'var(--ink-soft)';
+      }
+    }
+  });
+  window.scrollTo({top: document.getElementById('stepIndicator').getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth'});
+}
+</script>
 
 
 <footer class="site-footer">
