@@ -18,6 +18,25 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<style>
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .form-group label { font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+  .form-group input, .form-group select, .form-group textarea {
+    border: 1.5px solid var(--bone); border-radius: 8px; padding: 10px 14px;
+    font-family: 'Lexend', sans-serif; font-size: 0.9rem; color: var(--ink);
+    background: var(--bone-lighter); width: 100%;
+  }
+  .req { color: var(--bark); }
+  .sub { font-size: 0.88rem; color: var(--ink-soft); }
+  .mg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+  @media (max-width: 680px) {
+    .form-row { grid-template-columns: 1fr; }
+    .mg-grid { grid-template-columns: 1fr; }
+    .grm-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
@@ -203,7 +222,7 @@ function goToStep(n) {
       <h2 style="margin-top:8px;">Your dog's free meet &amp; greet</h2>
       <p style="max-width:600px;margin:12px auto 0;color:var(--ink-soft);">Before joining daycare, every dog comes in for a complimentary 20–30 minute meet and greet. It's relaxed, fun, and gives us a chance to make sure daycare is a great fit for your pup.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+    <div class="mg-grid">
       <div style="background:#fff;border-radius:16px;padding:28px 24px;">
         <h4 style="margin:0 0 8px;color:var(--bark);">Arrival &amp; intro</h4>
         <p style="font-size:0.9rem;color:var(--ink-soft);margin:0;">You and your dog are greeted by one of our trained team members. We chat briefly about your dog's personality, history and any special needs.</p>
@@ -226,7 +245,7 @@ function goToStep(n) {
 
 <section style="background:#fff;padding:40px 0 48px;">
   <div class="wrap" style="max-width:860px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
+    <div class="grm-grid">
       <div>
         <span class="eyebrow">Grooming &amp; spa</span>
         <h2 style="margin-top:8px;">Booking a grooming appointment</h2>
