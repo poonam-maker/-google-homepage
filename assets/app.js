@@ -247,11 +247,6 @@ async function submitBooking(e) {
     phone: form.phone.value.trim(),
     city: form.city ? form.city.value.trim() : "",
     service: form.service ? form.service.value : "",
-    dog_name: form.dogName.value.trim(),
-    dog_breed: form.dogBreed.value.trim(),
-    dog_size: form.dogSize.value,
-    vaccinated: form.vaccinated.value,
-    spayed_neutered: form.fixed.value,
     notes: form.notes.value.trim(),
     submitted_at: new Date().toISOString()
   };
@@ -259,7 +254,7 @@ async function submitBooking(e) {
   submitBtn.disabled = true; submitBtn.textContent = "Sending request...";
 
   // Fire conversion events BEFORE redirect
-  trackEvent("booking_submitted", { dog_name: payload.dog_name, visit_date: payload.visit_date });
+  trackEvent("booking_submitted", { visit_date: payload.visit_date });
   if (window.fbq) fbq("track", "Lead", { content_name: "Free First Visit Booking", currency: "CAD", value: 0 });
   if (window.dataLayer) window.dataLayer.push({ event: "conversion", send_to: "booking_free_visit" });
 
@@ -272,14 +267,10 @@ async function submitBooking(e) {
         Name: payload.parent_name,
         CustomFields: [
           { Key: "Phone", Value: payload.phone },
-          { Key: "DogName", Value: payload.dog_name },
-          { Key: "DogBreed", Value: payload.dog_breed },
-          { Key: "DogSize", Value: payload.dog_size },
+          { Key: "City", Value: payload.city },
           { Key: "Service", Value: payload.service },
           { Key: "VisitDate", Value: payload.visit_date },
           { Key: "VisitTime", Value: payload.visit_time },
-          { Key: "Vaccinated", Value: payload.vaccinated },
-          { Key: "SpayedNeutered", Value: payload.spayed_neutered },
           { Key: "Notes", Value: payload.notes },
           { Key: "Source", Value: payload.source }
         ],
@@ -297,7 +288,7 @@ async function submitBooking(e) {
 
   if (!delivered) {
     const body = encodeURIComponent("Free first visit request\n\n" + Object.entries(payload).map(([k,v]) => k+": "+v).join("\n"));
-    window.open("mailto:"+CONFIG.FALLBACK_EMAIL+"?subject=Free%20first%20visit%20-%20"+encodeURIComponent(payload.dog_name)+"&body="+body, "_blank");
+    window.open("mailto:"+CONFIG.FALLBACK_EMAIL+"?subject=New%20website%20lead&body="+body, "_blank");
   }
   // Redirect to thank-you page for conversion tracking
   sessionStorage.setItem("pp_booking", JSON.stringify(payload));
@@ -378,7 +369,7 @@ function initThankYou() {
   try {
     const b = JSON.parse(sessionStorage.getItem("pp_booking"));
     if (b) {
-      el.textContent = b.dog_name + "'s free first visit is confirmed for " +
+      el.textContent = "Your free first visit is confirmed for " +
         new Date(b.visit_date + "T12:00:00").toLocaleDateString("en-CA", { weekday:"long", month:"long", day:"numeric" }) +
         " at " + b.visit_time + ". We will send a confirmation to " + b.email + ".";
       sessionStorage.removeItem("pp_booking");
