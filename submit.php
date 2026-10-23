@@ -50,6 +50,7 @@ if ($visitDate) {
   $confirmBody = "Hi {$firstName},\n\n"
     . "Thanks for booking your free first visit at Pet Planet Brunette. We've received your request:\n\n"
     . $details . "\n"
+    . "Since this is your dog's first visit, please send us your dog's vaccination records before you come in. You can reply to this email with a photo or PDF of the records.\n\n"
     . "Our team will follow up to confirm. If you need to change anything, just reply to this email or call us at (778) 397-1364.\n\n";
 } else {
   $confirmSubject = "We received your message - Pet Planet Brunette";
