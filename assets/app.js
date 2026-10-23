@@ -203,7 +203,7 @@ function renderSlots() {
     btn.addEventListener("click", () => {
       state.selectedSlot = time; renderSlots(); updateSummary();
       trackEvent("booking_time_selected", { time });
-      document.getElementById("formPanel").scrollIntoView({ behavior:"smooth", block:"start" });
+      document.getElementById("bookingSummary").scrollIntoView({ behavior:"smooth", block:"center" });
     });
     gridEl.appendChild(btn);
   });
