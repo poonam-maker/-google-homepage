@@ -267,7 +267,7 @@ async function submitBooking(e) {
 
   if (!delivered) {
     const body = encodeURIComponent("Free first visit request\n\n" + Object.entries(payload).map(([k,v]) => k+": "+v).join("\n"));
-    window.open("mailto:"+CONFIG.FALLBACK_EMAIL+"?subject=New%20website%20lead&body="+body, "_blank");
+    window.open("mailto:"+CONFIG.FALLBACK_EMAIL+"?subject=NEW%20WEBSITE%20LEAD&body="+body, "_blank");
   }
   // Redirect to thank-you page for conversion tracking
   sessionStorage.setItem("pp_booking", JSON.stringify(payload));

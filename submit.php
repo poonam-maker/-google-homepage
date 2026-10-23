@@ -27,7 +27,7 @@ $headers = "From: Pet Planet Brunette Website <{$MAIL_FROM}>\r\n"
          . "Reply-To: {$email}\r\n"
          . "Content-Type: text/plain; charset=UTF-8\r\n";
 
-$sent = mail($STORE_EMAIL, "New website lead", implode("\n", $lines), $headers, "-f" . $MAIL_FROM);
+$sent = mail($STORE_EMAIL, "NEW WEBSITE LEAD", implode("\n", $lines), $headers, "-f" . $MAIL_FROM);
 
 http_response_code($sent ? 200 : 500);
 echo json_encode(["ok" => $sent]);
