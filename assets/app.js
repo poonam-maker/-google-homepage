@@ -5,11 +5,7 @@
    ============================================================ */
 
 const CONFIG = {
-  // Campaign Monitor integration
-  CM_API_KEY: "12716220128b11143e674fde1dc6fc56",
-  CM_LIST_ID: "6C9D3FC5F702B592",
-
-  // Fallback email if Campaign Monitor fails
+  // Fallback email if the form submission to submit.php fails
   FALLBACK_EMAIL: "brunette@coquitlam.petplanet.ca",
 
   // 3. Thank-you page for conversion tracking
@@ -260,31 +256,14 @@ async function submitBooking(e) {
 
   let delivered = false;
 
-  if (CONFIG.CM_API_KEY && CONFIG.CM_LIST_ID) {
-    try {
-      const cmPayload = {
-        EmailAddress: payload.email,
-        Name: payload.parent_name,
-        CustomFields: [
-          { Key: "Phone", Value: payload.phone },
-          { Key: "City", Value: payload.city },
-          { Key: "Service", Value: payload.service },
-          { Key: "VisitDate", Value: payload.visit_date },
-          { Key: "VisitTime", Value: payload.visit_time },
-          { Key: "Notes", Value: payload.notes },
-          { Key: "Source", Value: payload.source }
-        ],
-        Resubscribe: true,
-        ConsentToTrack: "Yes"
-      };
-      const res = await fetch("submit.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cmPayload)
-      });
-      delivered = res.ok;
-    } catch(err) { delivered = false; }
-  }
+  try {
+    const res = await fetch("submit.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    delivered = res.ok;
+  } catch(err) { delivered = false; }
 
   if (!delivered) {
     const body = encodeURIComponent("Free first visit request\n\n" + Object.entries(payload).map(([k,v]) => k+": "+v).join("\n"));
@@ -319,29 +298,13 @@ function initContactForm() {
     btn.disabled = true; btn.textContent = "Sending...";
     trackEvent("contact_form_submitted", { subject: payload.subject });
     if (window.fbq) fbq("track", "Contact");
-    let delivered = false;
-    if (CONFIG.CM_API_KEY && CONFIG.CM_LIST_ID) {
-      try {
-        const cmPayload = {
-          EmailAddress: payload.email,
-          Name: payload.name,
-          CustomFields: [
-            { Key: "Phone", Value: payload.phone },
-            { Key: "Subject", Value: payload.subject },
-            { Key: "Message", Value: payload.message },
-            { Key: "Source", Value: payload.source }
-          ],
-          Resubscribe: true,
-          ConsentToTrack: "Yes"
-        };
-        const res = await fetch("submit.php", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(cmPayload)
-        });
-        delivered = res.ok;
-      } catch(err) { delivered = false; }
-    }
+    try {
+      await fetch("submit.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+    } catch(err) {}
     document.getElementById("contactFormWrap").classList.add("hidden");
     document.getElementById("contactConfirm").classList.remove("hidden");
   });
