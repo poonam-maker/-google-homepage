@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MD1CS3MQ7S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MD1CS3MQ7S');
+  // Google Ads conversion — replace AW-XXXXXXXXX/YYYYYYY with your conversion ID
+  // gtag('config', 'AW-XXXXXXXXX');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dog Behaviour Class in Coquitlam | Pet Planet Brunette</title>
+<meta name="description" content="A 4-week Social Behaviour Class at Pet Planet Brunette, led by a Certified Master Trainer. Wednesdays from Nov 18. Call (778) 397-1364.">
+<meta name="keywords" content="dog behaviour class coquitlam, dog training coquitlam, dog trainer coquitlam, dog training tri cities, group dog training classes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bark: #6A3D38;
+    --bark-deep: #4E2C28;
+    --butter: #E8C77E;
+    --butter-deep: #D4AC55;
+    --bone: #E1CCBB;
+    --bone-light: #FBF7F1;
+    --sage: #B7C4A5;
+    --sage-light: #E3E9D9;
+    --ink: #2C1E1B;
+    --ink-soft: #6F5A55;
+    --white: #fff;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bone-light); color: var(--ink); font-size: 16px; line-height: 1.6; }
+  img { max-width: 100%; display: block; }
+  a { color: var(--bark); }
+
+  /* ── Sticky call bar (mobile only) ── */
+  .sticky-call {
+    display: none;
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    background: var(--bark); padding: 14px 20px;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
+  }
+  .sticky-call a {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    color: var(--white); font-weight: 700; font-size: 1rem; text-decoration: none;
+  }
+  .sticky-call .call-icon { font-size: 1.1rem; }
+  @media (max-width: 680px) { .sticky-call { display: block; } }
+
+  /* ── Top bar ── */
+  .top-bar {
+    background: var(--bark-deep); color: var(--bone); font-size: 0.8rem; font-weight: 500;
+    padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    flex-wrap: wrap;
+  }
+  .top-bar a { color: var(--butter); text-decoration: none; font-weight: 700; }
+
+  /* ── Site header ── */
+  .site-header {
+    background: var(--white); border-bottom: 1px solid var(--bone);
+    padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .logo-img { height: 36px; width: auto; }
+  .logo-fallback { font-weight: 800; font-size: 1.1rem; color: var(--bark); display: none; }
+  .header-phone { font-weight: 700; font-size: 0.9rem; color: var(--bark); text-decoration: none; }
+
+  /* ── Wrap ── */
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+  /* ── Buttons ── */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'Lexend', sans-serif; font-weight: 700; font-size: 0.95rem;
+    padding: 14px 28px; border-radius: 999px; text-decoration: none; cursor: pointer;
+    border: 2px solid transparent; transition: opacity .15s, transform .1s; white-space: nowrap; }
+  .btn:active { transform: scale(.97); }
+  .btn-primary { background: var(--bark); color: var(--white); border-color: var(--bark); }
+  .btn-primary:hover { background: var(--bark-deep); border-color: var(--bark-deep); }
+  .btn-ghost { background: transparent; color: var(--bark); border-color: var(--bark); }
+  .btn-ghost:hover { background: var(--bark); color: var(--white); }
+  .btn-butter { background: var(--butter); color: var(--bark-deep); border-color: var(--butter); }
+  .btn-butter:hover { background: var(--butter-deep); border-color: var(--butter-deep); }
+  .btn-lg { padding: 16px 36px; font-size: 1.05rem; }
+  .btn-block { width: 100%; }
+  .btn-group { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  /* ── Eyebrow ── */
+  .eyebrow { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--bark); margin-bottom: 10px; }
+
+  /* ── Hero ── */
+  .hero { background: var(--bark); color: var(--white); padding: 56px 20px 48px; }
+  .hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .hero .eyebrow { color: var(--butter); }
+  .hero h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 14px; }
+  .hero .subhead { font-size: 1.05rem; color: rgba(255,255,255,0.85); margin-bottom: 24px; }
+  .facts-strip {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+  }
+  .fact-pill {
+    background: rgba(255,255,255,0.12); color: var(--white);
+    font-size: 0.8rem; font-weight: 600; padding: 6px 14px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .hero-img {
+    border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; object-fit: cover; width: 100%;
+  }
+  .hero .btn-ghost { color: var(--white); border-color: rgba(255,255,255,0.5); }
+  .hero .btn-ghost:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+  @media (max-width: 680px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero-img { display: none; }
+    .hero { padding: 40px 20px 36px; }
+  }
+
+  /* ── Sections ── */
+  section { padding: 56px 0; }
+  section.alt { background: var(--sage-light); }
+  section.dark { background: var(--bark); color: var(--white); }
+  .section-head { text-align: center; margin-bottom: 40px; }
+  .section-head h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 800; margin-bottom: 10px; }
+  .section-head p { color: var(--ink-soft); max-width: 540px; margin: 0 auto; }
+
+  /* ── Problem hook ── */
+  .problem-hook { background: var(--bone); padding: 48px 20px; }
+  .problem-hook-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+  .problem-hook h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; color: var(--bark); margin-bottom: 14px; }
+  .problem-hook p { font-size: 1.05rem; color: var(--ink-soft); }
+
+  /* ── 4 tiles ── */
+  .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .tile {
+    background: var(--white); border-radius: var(--radius); padding: 24px 20px;
+    border: 1px solid var(--bone);
+  }
+  .tile-icon { font-size: 1.6rem; margin-bottom: 10px; }
+  .tile h3 { font-size: 0.95rem; font-weight: 700; color: var(--bark); margin-bottom: 6px; }
+  .tile p { font-size: 0.88rem; color: var(--ink-soft); }
+  @media (max-width: 480px) { .tiles { grid-template-columns: 1fr; } }
+
+  /* ── Steps ── */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .step { text-align: center; }
+  .step-num {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--butter); color: var(--bark-deep);
+    font-size: 1.1rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+  }
+  .step h3 { font-size: 0.95rem; font-weight: 700; color: var(--bark); margin-bottom: 6px; }
+  .step p { font-size: 0.88rem; color: var(--ink-soft); }
+  @media (max-width: 600px) { .steps { grid-template-columns: 1fr; gap: 16px; } .step { text-align: left; display: flex; gap: 16px; align-items: flex-start; } .step-num { flex-shrink: 0; margin: 0; } }
+
+  /* ── Schedule ── */
+  .date-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .date-card {
+    background: var(--white); border: 2px solid var(--bone); border-radius: var(--radius);
+    padding: 20px 14px; text-align: center;
+  }
+  .date-card.dec { background: var(--butter); border-color: var(--butter-deep); }
+  .date-card .month { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+  .date-card.dec .month { color: var(--bark-deep); }
+  .date-card .day { font-size: 1.8rem; font-weight: 800; color: var(--bark); line-height: 1; margin-bottom: 4px; }
+  .date-card.dec .day { color: var(--bark-deep); }
+  .date-card .weekday { font-size: 0.75rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 10px; }
+  .date-card.dec .weekday { color: var(--bark-deep); }
+  .date-card .time {
+    display: inline-block; background: var(--bark); color: var(--white);
+    font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+  }
+  .date-card.dec .time { background: var(--bark-deep); }
+  .dec-note {
+    background: var(--butter); border-radius: var(--radius-sm); padding: 12px 16px;
+    font-size: 0.88rem; font-weight: 600; color: var(--bark-deep);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+  }
+  .late-join { font-size: 0.88rem; color: var(--ink-soft); }
+  .late-join a { color: var(--bark); font-weight: 600; }
+  @media (max-width: 600px) { .date-cards { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ── Trainer ── */
+  .trainer-block {
+    background: var(--white); border-radius: var(--radius); padding: 32px 28px;
+    border: 1px solid var(--bone); max-width: 600px; margin: 0 auto; text-align: center;
+  }
+  .trainer-badge {
+    display: inline-block; background: var(--sage-light); color: var(--bark);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 999px; margin-bottom: 14px;
+  }
+  .trainer-block h3 { font-size: 1.1rem; font-weight: 700; color: var(--bark); margin-bottom: 10px; }
+  .trainer-block p { font-size: 0.92rem; color: var(--ink-soft); }
+
+  /* ── Policies ── */
+  .policy-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .policy {
+    background: var(--white); border-radius: var(--radius); padding: 22px 20px;
+    border-left: 4px solid var(--bark);
+  }
+  .policy h3 { font-size: 0.9rem; font-weight: 700; color: var(--bark); margin-bottom: 6px; }
+  .policy p { font-size: 0.85rem; color: var(--ink-soft); }
+  @media (max-width: 600px) { .policy-list { grid-template-columns: 1fr; } }
+
+  /* ── CTA + Form ── */
+  .cta-section { background: var(--bark); color: var(--white); padding: 60px 20px; }
+  .cta-section .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .cta-left h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 800; margin-bottom: 12px; }
+  .cta-left p { color: rgba(255,255,255,0.8); margin-bottom: 24px; font-size: 0.95rem; }
+  .cta-left .btn-group { margin-bottom: 0; }
+  .cta-left .btn-ghost { color: var(--white); border-color: rgba(255,255,255,0.5); }
+  .cta-left .btn-ghost:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+
+  /* ── Form ── */
+  .interest-form {
+    background: var(--white); border-radius: var(--radius); padding: 28px 24px;
+  }
+  .interest-form h3 { font-size: 1rem; font-weight: 700; color: var(--bark); margin-bottom: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .field { margin-bottom: 12px; }
+  .field label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 5px; }
+  .field input, .field select, .field textarea {
+    width: 100%; font-family: 'Lexend', sans-serif; font-size: 0.9rem;
+    padding: 10px 14px; border: 1.5px solid var(--bone); border-radius: var(--radius-sm);
+    background: var(--bone-light); color: var(--ink);
+    transition: border-color .15s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--bark);
+  }
+  .field textarea { resize: vertical; min-height: 80px; }
+  .field-check { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
+  .field-check input[type=checkbox] { margin-top: 3px; flex-shrink: 0; accent-color: var(--bark); }
+  .field-check label { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.4; }
+  .field-check label strong { color: var(--ink); }
+  .radio-group { display: flex; gap: 16px; }
+  .radio-opt { display: flex; align-items: center; gap: 6px; font-size: 0.88rem; cursor: pointer; }
+  .radio-opt input { accent-color: var(--bark); }
+  .form-submit { margin-top: 4px; }
+  .form-thanks {
+    display: none; text-align: center; padding: 24px 0;
+  }
+  .form-thanks .check { font-size: 2.4rem; margin-bottom: 10px; }
+  .form-thanks h3 { font-size: 1.1rem; font-weight: 700; color: var(--bark); margin-bottom: 8px; }
+  .form-thanks p { font-size: 0.88rem; color: var(--ink-soft); }
+  @media (max-width: 680px) {
+    .cta-section .wrap { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* ── Footer ── */
+  .page-footer {
+    background: var(--bark-deep); color: var(--bone); padding: 32px 20px;
+  }
+  .footer-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;
+  }
+  .footer-logo img { height: 32px; filter: brightness(10); }
+  .footer-logo .logo-fallback { display: none; color: var(--butter); font-weight: 800; font-size: 1rem; }
+  .footer-info { font-size: 0.85rem; }
+  .footer-info a { color: var(--butter); text-decoration: none; font-weight: 600; }
+  .footer-map a { font-size: 0.85rem; color: var(--butter); text-decoration: none; }
+
+  /* ── Misc ── */
+  .text-center { text-align: center; }
+  .mt-sm { margin-top: 8px; }
+  .mt { margin-top: 16px; }
+</style>
+</head>
+<body>
+
+<!-- Sticky call bar — mobile only -->
+<div class="sticky-call">
+  <a href="tel:7783971364">
+    <span class="call-icon">📞</span>
+    Call to register — (778) 397-1364
+  </a>
+</div>
+
+<!-- Top bar -->
+<div class="top-bar">
+  <span>Mon–Fri &nbsp;6:00 AM – 7:00 PM &nbsp;|&nbsp; Sat &nbsp;9:00 AM – 5:00 PM &nbsp;|&nbsp; Sun &nbsp;Closed</span>
+  <a href="tel:7783971364">(778) 397-1364</a>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="index.html">
+    <img class="logo-img"
+         src="assets/Pet-Planet-Wordmark-Bark-RGB.png"
+         alt="Pet Planet Brunette"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+    <span class="logo-fallback">Pet Planet Brunette</span>
+  </a>
+  <a class="header-phone" href="tel:7783971364">(778) 397-1364</a>
+</header>
+
+<!-- 1. Hero -->
+<section class="hero" style="padding:56px 0 48px;">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Pet Planet Brunette</span>
+      <h1>Social Behaviour Class</h1>
+      <p class="subhead">A 4-week class with a Certified Master Trainer, tailored to your dog's behaviour.</p>
+      <div class="facts-strip">
+        <span class="fact-pill">4 weeks</span>
+        <span class="fact-pill">Every Wednesday</span>
+        <span class="fact-pill">Starts Nov 18</span>
+        <span class="fact-pill">Dogs 1 year +</span>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-butter btn-lg" href="tel:7783971364">📞 Call to register</a>
+        <a class="btn btn-ghost btn-lg" href="#interest-form">Ask a question</a>
+      </div>
+    </div>
+    <img class="hero-img"
+         src="assets/doggy-social-club-training.jpg"
+         alt="Dog training session at Pet Planet Brunette"
+         onerror="this.style.display='none'">
+  </div>
+</section>
+
+<!-- 2. Problem hook -->
+<div class="problem-hook">
+  <div class="problem-hook-inner">
+    <h2>Jumping? Chewing? Nipping?</h2>
+    <p>It's not too late to work on it. In this small group class, you and your dog learn together, with guidance shaped around the behaviours you're dealing with right now.</p>
+  </div>
+</div>
+
+<!-- 3. What you'll work on -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What you'll work on</span>
+      <h2>Built around your dog's behaviour</h2>
+    </div>
+    <div class="tiles">
+      <div class="tile">
+        <div class="tile-icon">🐕</div>
+        <h3>Supervised time around other dogs</h3>
+        <p>Your dog meets other dogs in a calm, structured setting with a trainer watching every interaction.</p>
+      </div>
+      <div class="tile">
+        <div class="tile-icon">👁️</div>
+        <h3>How your dog communicates</h3>
+        <p>Learn to read what your dog is telling you — and what other dogs are telling them.</p>
+      </div>
+      <div class="tile">
+        <div class="tile-icon">✋</div>
+        <h3>When to step in</h3>
+        <p>Understand when to correct, redirect or simply let it go — and what each situation calls for.</p>
+      </div>
+      <div class="tile">
+        <div class="tile-icon">🎯</div>
+        <h3>Jumping, chewing, nipping and more</h3>
+        <p>Your trainer works on the specific behaviours in the room each week — not a fixed curriculum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. How it works -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Simple from start to finish</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Tell us about your dog</h3>
+          <p>Share what you're seeing and what you'd like to work on when you register.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Your trainer tailors the class</h3>
+          <p>Each class is shaped around the specific behaviours in the room that week.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Practise together each week</h3>
+          <p>Four Wednesday sessions, one hour each, building on the week before.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Schedule -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Schedule</span>
+      <h2>Four Wednesdays, starting Nov 18</h2>
+    </div>
+    <div class="date-cards">
+      <div class="date-card">
+        <div class="month">November</div>
+        <div class="day">18</div>
+        <div class="weekday">Wednesday</div>
+        <span class="time">6:00 PM</span>
+      </div>
+      <div class="date-card">
+        <div class="month">November</div>
+        <div class="day">25</div>
+        <div class="weekday">Wednesday</div>
+        <span class="time">6:00 PM</span>
+      </div>
+      <div class="date-card dec">
+        <div class="month">December</div>
+        <div class="day">2</div>
+        <div class="weekday">Wednesday</div>
+        <span class="time">7:30 PM</span>
+      </div>
+      <div class="date-card dec">
+        <div class="month">December</div>
+        <div class="day">9</div>
+        <div class="weekday">Wednesday</div>
+        <span class="time">7:30 PM</span>
+      </div>
+    </div>
+    <div class="dec-note">
+      ⚠️ The December classes (Dec 2 and Dec 9) start at <strong>7:30 pm</strong> — 90 minutes later than November.
+    </div>
+    <p class="late-join">Already started? New dogs may still be able to join. <a href="tel:7783971364">Call us to ask.</a></p>
+  </div>
+</section>
+
+<!-- 6. Trainer -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Your trainer</span>
+      <h2>Certified and experienced</h2>
+    </div>
+    <div class="trainer-block">
+      <span class="trainer-badge">Certified Master Trainer</span>
+      <h3>Certified through Canada West Canine Centre</h3>
+      <p>Your trainer is a Certified Master Trainer, certified through the Master Trainer Program at Canada West Canine Centre in 2008, with training in obedience and behavioural problem solving.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Policies -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Good to know</span>
+      <h2>Before you join</h2>
+    </div>
+    <div class="policy-list">
+      <div class="policy">
+        <h3>Dogs 1 year + with up-to-date vaccinations</h3>
+        <p>Please bring proof of vaccinations when you register. Dogs must be at least 1 year old to join.</p>
+      </div>
+      <div class="policy">
+        <h3>Arrive on time</h3>
+        <p>Please arrive on time for each class. The session starts with structured introductions that set the tone for the hour.</p>
+      </div>
+      <div class="policy">
+        <h3>Rescheduling</h3>
+        <p>We need 24 hours' notice to reschedule a class. Less than 24 hours' notice counts as a cancellation of that class.</p>
+      </div>
+      <div class="policy">
+        <h3>No-shows</h3>
+        <p>A no-show counts as a cancellation of that class. If something comes up, please let us know as soon as possible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CTA + Interest form -->
+<section class="cta-section" id="interest-form">
+  <div class="wrap">
+    <div class="cta-left">
+      <h2>Ready to get started?</h2>
+      <p>Call us at (778) 397-1364 for pricing and to save a spot, or visit us at Pet Planet Brunette, 822 Brunette Ave, Coquitlam.</p>
+      <div class="btn-group">
+        <a class="btn btn-butter btn-lg" href="tel:7783971364">📞 (778) 397-1364</a>
+        <a class="btn btn-ghost" href="https://maps.google.com/?q=822+Brunette+Ave+Coquitlam+BC" target="_blank" rel="noopener">Get directions</a>
+      </div>
+    </div>
+    <div class="interest-form">
+      <h3>Or send us a note — we'll call you</h3>
+      <form id="behaviourForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="clientName">Your name *</label>
+            <input type="text" id="clientName" name="clientName" required placeholder="Jane Smith">
+          </div>
+          <div class="field">
+            <label for="phone">Contact number *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="(778) 000-0000">
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required placeholder="jane@example.com">
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="dogName">Dog's name *</label>
+            <input type="text" id="dogName" name="dogName" required placeholder="Buddy">
+          </div>
+          <div class="field">
+            <label for="breed">Breed *</label>
+            <input type="text" id="breed" name="breed" required placeholder="Golden Retriever">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label>Sex *</label>
+            <div class="radio-group" style="margin-top:8px;">
+              <label class="radio-opt"><input type="radio" name="sex" value="Male" required> Male</label>
+              <label class="radio-opt"><input type="radio" name="sex" value="Female"> Female</label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="age">Age *</label>
+            <input type="text" id="age" name="age" required placeholder="e.g. 2 years">
+          </div>
+        </div>
+        <div class="field">
+          <label for="behaviourNotes">Behaviour issues you'd like to work on *</label>
+          <textarea id="behaviourNotes" name="behaviourNotes" required placeholder="e.g. jumps on guests, nips when excited, reactive on leash…"></textarea>
+        </div>
+        <div class="field-check">
+          <input type="checkbox" id="vaccCheck" name="vaccCheck" required>
+          <label for="vaccCheck"><strong>My dog is 1 year or older and up to date on vaccinations.</strong></label>
+        </div>
+        <div class="field-check">
+          <input type="checkbox" id="consent" name="consent">
+          <label for="consent">I'd like to receive news and offers from Pet Planet Brunette (optional).</label>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary btn-block">Send my interest →</button>
+        </div>
+      </form>
+      <div class="form-thanks" id="formThanks">
+        <div class="check">✅</div>
+        <h3>Thanks!</h3>
+        <p>Our team will call you within one business day to confirm your spot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="page-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="assets/Pet-Planet-Wordmark-Bark-RGB.png" alt="Pet Planet Brunette"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="logo-fallback">Pet Planet Brunette</span>
+    </div>
+    <div class="footer-info">
+      <div>822 Brunette Ave, Coquitlam BC V3K 1C4</div>
+      <div><a href="tel:7783971364">(778) 397-1364</a></div>
+    </div>
+    <div class="footer-map">
+      <a href="https://maps.google.com/?q=822+Brunette+Ave+Coquitlam+BC" target="_blank" rel="noopener">View on map →</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script>
+  // Form submission
+  document.getElementById('behaviourForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = this;
+    var data = new FormData(form);
+    data.append('service', 'Social Behaviour Class');
+    data.append('source', 'dog-behaviour-class');
+
+    fetch('submit.php', { method: 'POST', body: data })
+      .then(function(r) { return r.ok ? r : Promise.reject(r); })
+      .catch(function() {})
+      .finally(function() {
+        form.style.display = 'none';
+        document.getElementById('formThanks').style.display = 'block';
+        // Fire Meta Pixel Lead event
+        if (typeof fbq === 'function') fbq('track', 'Lead');
+        // Fire Google Ads conversion — replace with your conversion action
+        // gtag('event', 'conversion', { 'send_to': 'AW-XXXXXXXXX/YYYYYYY' });
+      });
+  });
+
+  // Track tap-to-call clicks
+  document.querySelectorAll('a[href="tel:7783971364"]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      if (typeof fbq === 'function') fbq('track', 'Contact');
+      // gtag('event', 'conversion', { 'send_to': 'AW-XXXXXXXXX/ZZZZZZZ' });
+    });
+  });
+</script>
+</body>
+</html>
