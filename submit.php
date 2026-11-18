@@ -27,7 +27,7 @@ $headers = "From: Pet Planet Brunette Website <{$MAIL_FROM}>\r\n"
          . "Reply-To: {$email}\r\n"
          . "Content-Type: text/plain; charset=UTF-8\r\n";
 
-$sent = mail($STORE_EMAIL, "NEW WEBSITE LEAD", implode("\n", $lines), $headers, "-f" . $MAIL_FROM);
+$sent = mail($STORE_EMAIL, "New Lead", implode("\n", $lines), $headers, "-f" . $MAIL_FROM);
 
 // Confirmation email to the person who submitted the form
 $fullName  = oneLine($data["parent_name"] ?? $data["name"] ?? "");
